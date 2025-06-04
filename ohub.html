@@ -78,7 +78,8 @@
             position: relative;
         }
 
-        .nav-menu a:hover {
+        .nav-menu a:hover,
+        .nav-menu a.active {
             color: var(--primary-color-2);
         }
 
@@ -93,7 +94,8 @@
             transition: width 0.3s ease;
         }
 
-        .nav-menu a:hover::after {
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
             width: 100%;
         }
 
@@ -128,12 +130,14 @@
             margin-top: 100px;
             padding: 4rem 0;
             background: #f8f9fa;
+            width: 100%;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
+            width: 100%;
         }
 
         .page-header {
@@ -165,6 +169,7 @@
             margin-bottom: 3rem;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            width: 100%;
         }
 
         .opportunity-section:hover {
@@ -186,6 +191,7 @@
             align-items: center;
             justify-content: center;
             margin-right: 1.5rem;
+            flex-shrink: 0;
         }
 
         .section-icon i {
@@ -235,9 +241,10 @@
 
         .company-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
+            width: 100%;
         }
 
         .company-card {
@@ -272,9 +279,10 @@
 
         .societies-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
+            width: 100%;
         }
 
         .society-card {
@@ -293,9 +301,10 @@
 
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
+            width: 100%;
         }
 
         .course-card {
@@ -371,6 +380,7 @@
             background: #2c3e50;
             color: white;
             padding: 3rem 0 1rem;
+            width: 100%;
         }
 
         .footer-content {
@@ -424,6 +434,7 @@
             color: #95a5a6;
         }
 
+        /* Mobile Responsive Styles */
         @media (max-width: 1024px) {
             .mobile-toggle {
                 display: flex;
@@ -455,26 +466,147 @@
 
             .nav-container {
                 flex-wrap: wrap;
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .company-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .societies-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .courses-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
         }
 
         @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .logo img {
+                max-width: 100px;
+            }
+
+            .main-content {
+                padding: 2rem 0;
+            }
+
             .page-title {
                 font-size: 2.5rem;
             }
 
+            .page-subtitle {
+                font-size: 1.1rem;
+            }
+
             .opportunity-section {
                 padding: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .section-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
             }
 
             .section-title {
                 font-size: 2rem;
             }
 
+            .subsection h3 {
+                font-size: 1.5rem;
+            }
+
             .company-grid,
             .societies-grid,
             .courses-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .tips-section {
+                padding: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0.5rem 1rem;
+            }
+
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .page-subtitle {
+                font-size: 1rem;
+            }
+
+            .opportunity-section {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .section-icon i {
+                font-size: 1.5rem;
+            }
+
+            .subsection h3 {
+                font-size: 1.3rem;
+                padding-left: 1rem;
+            }
+
+            .content-list {
+                margin-left: 1rem;
+            }
+
+            .tips-list li {
+                padding-left: 1.5rem;
+            }
+
+            .company-card,
+            .course-card {
+                padding: 1.5rem;
+            }
+
+            .society-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -731,6 +863,14 @@
 
         closeMenu.addEventListener('click', function () {
             navMenu.classList.remove('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
         });
 
         window.addEventListener('scroll', function () {
