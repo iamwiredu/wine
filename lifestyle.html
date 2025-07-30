@@ -26,8 +26,7 @@
             background: #fff;
             overflow-x: hidden;
         }
-
-        .header {
+ .header {
             position: fixed;
             top: 0;
             width: 100%;
@@ -82,11 +81,6 @@
             color: var(--primary-color-2);
         }
 
-        .nav-menu a.active {
-            color: var(--primary-color-2);
-            font-weight: 600;
-        }
-
         .nav-menu a::after {
             content: '';
             position: absolute;
@@ -98,8 +92,7 @@
             transition: width 0.3s ease;
         }
 
-        .nav-menu a:hover::after,
-        .nav-menu a.active::after {
+        .nav-menu a:hover::after {
             width: 100%;
         }
 
@@ -107,7 +100,6 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            z-index: 1001;
         }
 
         .mobile-toggle span {
@@ -116,18 +108,6 @@
             background: #333;
             margin: 3px 0;
             transition: 0.3s;
-        }
-
-        .mobile-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .mobile-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
         }
 
         .nav-menu .close-btn {
@@ -141,6 +121,9 @@
             color: var(--primary-color-2);
             cursor: pointer;
             display: none;
+             z-index: 1001; /* Ensure it's above nav-menu */
+    padding: 0.5rem;
+
         }
 
         .main-content {
@@ -508,46 +491,30 @@
                 display: flex;
             }
 
-            .nav-menu {
+    .nav-menu {
                 position: fixed;
                 top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 400px;
+                left: -100%;
+                width: 100%;
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-                gap: 1rem;
-                padding: 5rem 2rem 2rem;
-                transition: right 0.3s ease;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                padding-top: 3rem;
+                transition: left 0.3s ease;
                 z-index: 999;
-                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
-                overflow-y: auto;
             }
 
             .nav-menu.active {
-                right: 0;
+                left: 0;
             }
 
             .nav-menu li {
                 width: 100%;
             }
 
-            .nav-menu a {
-                display: block;
-                padding: 0.8rem 0;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-                width: 100%;
-            }
-
-            #close-menu {
-                display: block;
-                position: absolute;
-                top: 1.5rem;
-                right: 1.5rem;
-            }
 
             .container {
                 padding: 0 1.5rem;
@@ -560,7 +527,7 @@
 
         @media (max-width: 768px) {
             .nav-container {
-                padding: 1rem 1.5rem;
+                padding: 1rem;
             }
 
             .container {
@@ -815,6 +782,19 @@
                 padding: 1.25rem 0.75rem;
             }
         }
+        .mobile-close {
+    position: fixed;
+    top: 1rem;
+    right: 1.5rem;
+    z-index: 1001;
+    display: none;
+}
+
+     .nav-menu li {
+                display: flex;
+                justify-content: center;
+            }
+
     </style>
 </head>
 
@@ -822,18 +802,19 @@
     <header class="header" id="header">
         <nav class="nav-container">
             <div class="logo">
-                <img src="images/wine-logo.png" alt="WinE Logo">
+                <img src="images/logo.png" alt="WinE Logo">
             </div>
+            <div class="mobile-close" id="close-menu"><i class="fas fa-times"></i></div>
             <ul class="nav-menu" id="nav-menu">
-                <li class="close-btn"><i class="fas fa-times" id="close-menu"></i></li>
+    
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="library.html">WinE Library</a></li>
-                <li><a href="events.html">Main Events</a></li>
+            
+                <li><a href="wine_library.html">WinE Library</a></li>
+                <li><a href="#events">Main Events</a></li>
                 <li><a href="ohub.html">Opportunity Hub</a></li>
-                <li><a href="lifestyle.html" class="active">Lifestyle</a></li>
+                <li><a href="lifestyle.html">Lifestyle</a></li>
                 <li><a href="health_education.html">Health Education</a></li>
-                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="#blogs">Blogs</a></li>
             </ul>
             <div class="mobile-toggle" id="mobile-toggle">
                 <span></span>
@@ -843,9 +824,7 @@
         </nav>
     </header>
 
-    <!-- Overlay for mobile menu -->
-    <div class="overlay" id="overlay"></div>
-
+  
     <main class="main-content">
         <div class="container">
             <div class="page-header">
@@ -1135,37 +1114,28 @@
     </footer>
 
     <script>
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        const closeMenu = document.getElementById('close-menu');
+const mobileToggle = document.getElementById('mobile-toggle');
+const navMenu = document.getElementById('nav-menu');
+const closeMenu = document.getElementById('close-menu');
 
-        // Create and add overlay element
-        const overlay = document.createElement('div');
-        overlay.className = 'overlay';
-        overlay.id = 'overlay';
-        document.body.appendChild(overlay);
+mobileToggle.addEventListener('click', function () {
+    navMenu.classList.add('active');
+    closeMenu.style.display = 'block';
+});
 
-        // Toggle mobile menu
-        mobileToggle.addEventListener('click', function () {
-            navMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-        });
+closeMenu.addEventListener('click', function () {
+    navMenu.classList.remove('active');
+    closeMenu.style.display = 'none';
+});
 
-        // Close menu when clicking the close button
-        closeMenu.addEventListener('click', function () {
-            navMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        // Close menu when clicking the overlay
-        overlay.addEventListener('click', function () {
-            navMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
+// Close nav when clicking a link
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        closeMenu.style.display = 'none';
+    });
+});
         // Header scroll effect
         window.addEventListener('scroll', function () {
             const header = document.getElementById('header');

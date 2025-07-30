@@ -25,8 +25,7 @@
             background: #fff;
             overflow-x: hidden;
         }
-
-        .header {
+  .header {
             position: fixed;
             top: 0;
             width: 100%;
@@ -81,11 +80,6 @@
             color: var(--primary-color-2);
         }
 
-        .nav-menu a.active {
-            color: var(--primary-color-2);
-            font-weight: 600;
-        }
-
         .nav-menu a::after {
             content: '';
             position: absolute;
@@ -97,8 +91,7 @@
             transition: width 0.3s ease;
         }
 
-        .nav-menu a:hover::after,
-        .nav-menu a.active::after {
+        .nav-menu a:hover::after {
             width: 100%;
         }
 
@@ -106,7 +99,6 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            z-index: 1001;
         }
 
         .mobile-toggle span {
@@ -115,18 +107,6 @@
             background: #333;
             margin: 3px 0;
             transition: 0.3s;
-        }
-
-        .mobile-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .mobile-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
         }
 
         .nav-menu .close-btn {
@@ -556,71 +536,48 @@
             }
         }
 
-        /* Overlay for mobile menu */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 998;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
         @media (max-width: 1024px) {
             .mobile-toggle {
                 display: flex;
             }
 
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 400px;
-                height: 100vh;
-                background: white;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-                gap: 1rem;
-                padding: 5rem 2rem 2rem;
-                transition: right 0.3s ease;
-                z-index: 999;
-                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
-                overflow-y: auto;
-            }
+       
+
+           .nav-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    flex-direction: column;
+    justify-content: center; /* centers vertically */
+    align-items: center;     /* centers horizontally */
+    gap: 2rem;
+    transition: left 0.3s ease;
+    z-index: 999;
+    text-align: center;
+}
 
             .nav-menu.active {
-                right: 0;
+                left: 0;
             }
 
             .nav-menu li {
                 width: 100%;
+                display: flex;
+                justify-content: center;
             }
+        
+.nav-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    border-bottom: none;
+    width: fit-content;
+}
 
-            .nav-menu a {
-                display: block;
-                padding: 0.8rem 0;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-                width: 100%;
-            }
 
-            #close-menu {
-                display: block;
-                position: absolute;
-                top: 1.5rem;
-                right: 1.5rem;
-            }
-
+      
             .container {
                 padding: 0 1.5rem;
             }
@@ -857,6 +814,18 @@
                 height: 2px;
             }
         }
+        .mobile-close {
+    position: fixed;
+    top: 1rem;
+    right: 1.5rem;
+    z-index: 1001;
+    font-size: 2rem;
+    color: var(--primary-color-2);
+    padding: 0.5rem;
+    display: none;
+    cursor: pointer;
+    }
+
     </style>
 </head>
 
@@ -864,18 +833,19 @@
     <header class="header" id="header">
         <nav class="nav-container">
             <div class="logo">
-                <img src="/placeholder.svg?height=60&width=120&text=WinE+Logo" alt="WinE Logo">
+                <img src="images/logo.png" alt="WinE Logo">
             </div>
+            <div id="close-menu" class="mobile-close"><i class="fas fa-times"></i></div>
             <ul class="nav-menu" id="nav-menu">
-                <li class="close-btn"><i class="fas fa-times" id="close-menu"></i></li>
+             
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="library.html" class="active">WinE Library</a></li>
-                <li><a href="events.html">Main Events</a></li>
+    
+                <li><a href="wine_library.html">WinE Library</a></li>
+                <li><a href="#events">Main Events</a></li>
                 <li><a href="ohub.html">Opportunity Hub</a></li>
                 <li><a href="lifestyle.html">Lifestyle</a></li>
                 <li><a href="health_education.html">Health Education</a></li>
-                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="#blogs">Blogs</a></li>
             </ul>
             <div class="mobile-toggle" id="mobile-toggle">
                 <span></span>
@@ -885,9 +855,7 @@
         </nav>
     </header>
 
-    <!-- Overlay for mobile menu -->
-    <div class="overlay" id="overlay"></div>
-
+    
     <main class="main-content">
         <div class="container">
             <div class="page-header">
@@ -944,55 +912,6 @@
                 </div>
             </section>
 
-            <!-- Regional Leaders Section -->
-            <section class="library-section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h2 class="section-title">Meet Our Regional Leaders</h2>
-                </div>
-                <p class="section-intro">Regional coordinators who bridge the gap between national vision and local implementation, ensuring WinE's impact reaches every corner of Ghana.</p>
-                
-                <div class="profiles-grid">
-                    <div class="profile-card">
-                        <div class="profile-image">
-                            <img src="/placeholder.svg?height=120&width=120&text=Ashanti" alt="Ashanti Regional Coordinator">
-                        </div>
-                        <h3 class="profile-name">Ing. Adwoa Frimpong</h3>
-                        <p class="profile-title">Ashanti Regional Coordinator</p>
-                        <p class="profile-description">Coordinating WinE activities across the Ashanti region and supporting local chapters in their growth initiatives.</p>
-                    </div>
-                    
-                    <div class="profile-card">
-                        <div class="profile-image">
-                            <img src="/placeholder.svg?height=120&width=120&text=Greater+Accra" alt="Greater Accra Regional Coordinator">
-                        </div>
-                        <h3 class="profile-name">Ing. Nana Adjoa</h3>
-                        <p class="profile-title">Greater Accra Regional Coordinator</p>
-                        <p class="profile-description">Leading WinE initiatives in the capital region and fostering partnerships with industry stakeholders.</p>
-                    </div>
-                    
-                    <div class="profile-card">
-                        <div class="profile-image">
-                            <img src="/placeholder.svg?height=120&width=120&text=Northern" alt="Northern Regional Coordinator">
-                        </div>
-                        <h3 class="profile-name">Ing. Fatima Abdul</h3>
-                        <p class="profile-title">Northern Regional Coordinator</p>
-                        <p class="profile-description">Expanding WinE's reach in northern Ghana and promoting engineering education among young women.</p>
-                    </div>
-                    
-                    <div class="profile-card">
-                        <div class="profile-image">
-                            <img src="/placeholder.svg?height=120&width=120&text=Western" alt="Western Regional Coordinator">
-                        </div>
-                        <h3 class="profile-name">Ing. Akua Darko</h3>
-                        <p class="profile-title">Western Regional Coordinator</p>
-                        <p class="profile-description">Strengthening WinE presence in the Western region and connecting with mining and oil industry professionals.</p>
-                    </div>
-                </div>
-            </section>
-
             <!-- Student Leaders Section -->
             <section class="library-section">
                 <div class="section-header">
@@ -1027,7 +946,7 @@
                             <img src="/placeholder.svg?height=120&width=120&text=Secretary" alt="KNUST Secretary">
                         </div>
                         <h3 class="profile-name">Esi Antwi</h3>
-                        <p class="profile-title">WinE KNUST Secretary</p>
+                        <p class="profile-title">WinE KNUST General Secretary</p>
                         <p class="profile-description">Managing communications and maintaining records of all WinE KNUST activities and member engagement.</p>
                     </div>
                     
@@ -1036,9 +955,10 @@
                             <img src="/placeholder.svg?height=120&width=120&text=Treasurer" alt="KNUST Treasurer">
                         </div>
                         <h3 class="profile-name">Adwoa Serwaa</h3>
-                        <p class="profile-title">WinE KNUST Treasurer</p>
+                        <p class="profile-title">WinE KNUST Financial Secretary</p>
                         <p class="profile-description">Overseeing financial planning and resource allocation for student programs and events.</p>
                     </div>
+                    
                     
                     <div class="profile-card">
                         <div class="profile-image">
@@ -1124,7 +1044,7 @@
                         <h3>Prof. Rita Akosua Dickson</h3>
                         <div class="profile-details">
                             <div class="featured-image">
-                                <img src="/placeholder.svg?height=180&width=180&text=Patron" alt="Prof. Rita Akosua Dickson">
+                                <img src="images/winelibrary/VC.jpg" alt="Prof. Rita Akosua Dickson">
                             </div>
                             <div class="featured-text">
                                 <h4>Patron, WinE KNUST</h4>
@@ -1159,7 +1079,7 @@
                     <div class="excellence-card">
                         <div class="excellence-header">
                             <div class="excellence-image">
-                                <img src="/placeholder.svg?height=100&width=100&text=Sophia" alt="Ing. Sophia Abena Tijani">
+                                <img src="images/winelibrary/STM.jpg" alt="Ing. Sophia Abena Tijani">
                             </div>
                             <div class="excellence-info">
                                 <h4>Ing. Sophia Abena Tijani</h4>
@@ -1176,7 +1096,7 @@
                     <div class="excellence-card">
                         <div class="excellence-header">
                             <div class="excellence-image">
-                                <img src="/placeholder.svg?height=100&width=100&text=Patricia" alt="Ing. Patricia Obo-Nai">
+                                <img src="images/winelibrary/PON.jpg" alt="Ing. Patricia Obo-Nai">
                             </div>
                             <div class="excellence-info">
                                 <h4>Ing. Patricia Obo-Nai</h4>
@@ -1192,7 +1112,7 @@
                     <div class="excellence-card">
                         <div class="excellence-header">
                             <div class="excellence-image">
-                                <img src="/placeholder.svg?height=100&width=100&text=Catherine" alt="Ing. Catherine Kuupol Kuutor">
+                                <img src="images/winelibrary/ck.png" alt="Ing. Catherine Kuupol Kuutor">
                             </div>
                             <div class="excellence-info">
                                 <h4>Ing. Catherine Kuupol Kuutor</h4>
@@ -1247,31 +1167,28 @@
     </footer>
 
     <script>
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        const closeMenu = document.getElementById('close-menu');
-        const overlay = document.getElementById('overlay');
+    const mobileToggle = document.getElementById('mobile-toggle');
+const navMenu = document.getElementById('nav-menu');
+const closeMenu = document.getElementById('close-menu');
 
-        // Toggle mobile menu
-        mobileToggle.addEventListener('click', function () {
-            navMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-        });
+mobileToggle.addEventListener('click', function () {
+    navMenu.classList.add('active');
+    closeMenu.style.display = 'block';
+});
 
-        // Close menu when clicking the close button
-        closeMenu.addEventListener('click', function () {
-            navMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+closeMenu.addEventListener('click', function () {
+    navMenu.classList.remove('active');
+    closeMenu.style.display = 'none';
+});
 
-        // Close menu when clicking the overlay
-        overlay.addEventListener('click', function () {
-            navMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        closeMenu.style.display = 'none';
+    });
+});
+
 
         // Header scroll effect
         window.addEventListener('scroll', function () {
@@ -1292,7 +1209,7 @@
                     // Close mobile menu after clicking a link
                     if (navMenu.classList.contains('active')) {
                         navMenu.classList.remove('active');
-                        overlay.classList.remove('active');
+                 
                         document.body.style.overflow = '';
                     }
                 }
