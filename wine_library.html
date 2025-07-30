@@ -825,37 +825,71 @@
     display: none;
     cursor: pointer;
     }
+@media (min-width: 1025px) {
+  .nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+  }
+
+  .nav-container {
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-menu {
+    display: flex;
+    gap: 2rem;
+    position: static;
+    height: auto;
+    width: auto;
+    background: none;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .mobile-toggle,
+  .mobile-close {
+    display: none !important;
+  }
+}
 
     </style>
 </head>
 
 <body>
     <header class="header" id="header">
-        <nav class="nav-container">
-            <div class="logo">
-                <img src="images/logo.png" alt="WinE Logo">
-            </div>
-            <div id="close-menu" class="mobile-close"><i class="fas fa-times"></i></div>
-            <ul class="nav-menu" id="nav-menu">
-             
-                <li><a href="index.html">Home</a></li>
-    
-                <li><a href="wine_library.html">WinE Library</a></li>
-                <li><a href="events.html">Main Events</a></li>
-                <li><a href="ohub.html">Opportunity Hub</a></li>
-                <li><a href="lifestyle.html">Lifestyle</a></li>
-                <li><a href="health_education.html">Health Education</a></li>
-                <li><a href="#blogs">Blogs</a></li>
-            </ul>
-            <div class="mobile-toggle" id="mobile-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+  <div class="nav-wrapper">
+    <nav class="nav-container">
+      <div class="logo">
+        <img src="images/logo.png" alt="WinE Logo">
+      </div>
+      <div class="mobile-toggle" id="mobile-toggle">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
 
-    
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="wine_library.html">WinE Library</a></li>
+      <li><a href="events.html">Main Events</a></li>
+      <li><a href="ohub.html">Opportunity Hub</a></li>
+      <li><a href="lifestyle.html">Lifestyle</a></li>
+      <li><a href="health_education.html">Health Education</a></li>
+      <li><a href="#blogs">Blogs</a></li>
+    </ul>
+  </div>
+
+  <div id="close-menu" class="mobile-close"><i class="fas fa-times"></i></div>
+</header>
+
     <main class="main-content">
         <div class="container">
             <div class="page-header">
