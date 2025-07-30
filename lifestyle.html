@@ -63,7 +63,7 @@
             transition: transform 0.3s ease;
         }
 
-        .nav-menu {
+                .nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
@@ -77,7 +77,8 @@
             position: relative;
         }
 
-        .nav-menu a:hover {
+        .nav-menu a:hover,
+        .nav-menu a.active {
             color: var(--primary-color-2);
         }
 
@@ -92,9 +93,11 @@
             transition: width 0.3s ease;
         }
 
-        .nav-menu a:hover::after {
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
             width: 100%;
         }
+
 
         .mobile-toggle {
             display: none;
@@ -747,7 +750,7 @@
             }
 
             .nav-menu {
-                width: 90%;
+                width: 100%;
                 padding: 4rem 1.5rem 2rem;
             }
 
@@ -783,9 +786,7 @@
             }
         }
         .mobile-close {
-    position: fixed;
-    top: 1rem;
-    right: 1.5rem;
+
     z-index: 1001;
     display: none;
 }
@@ -804,9 +805,10 @@
             <div class="logo">
                 <img src="images/logo.png" alt="WinE Logo">
             </div>
-            <div class="mobile-close" id="close-menu"><i class="fas fa-times"></i></div>
+        
             <ul class="nav-menu" id="nav-menu">
-    
+
+                    <li class="mobile-close" id="close-menu" style="justify-content: center;"><i class="fas fa-times"></i></li>
                 <li><a href="index.html">Home</a></li>
             
                 <li><a href="wine_library.html">WinE Library</a></li>
@@ -828,7 +830,7 @@
     <main class="main-content">
         <div class="container">
             <div class="page-header">
-                <h1 class="page-title">Lifestyle</h1>
+                <h1 class="page-title" style="margin-top: 50px;">Lifestyle</h1>
                 <p class="page-subtitle">Balancing academic excellence with personal growth, professional development,
                     and well-being</p>
             </div>
@@ -1001,22 +1003,7 @@
                     <p>Experience the vibrant energy of our community fitness programs! Looking for a fun way to stay
                         active at KNUST? Join the excitement of our Keep Fit/Aerobics WinE Events.</p>
 
-                    <div class="image-gallery">
-                        <div class="gallery-image">
-                            <img src="/placeholder.svg?height=200&width=300"
-                                alt="Women engineers participating in aerobics session">
-                        </div>
-                        <div class="gallery-image">
-                            <img src="/placeholder.svg?height=200&width=300"
-                                alt="Group fitness activity at KNUST campus">
-                        </div>
-                        <div class="gallery-image">
-                            <img src="/placeholder.svg?height=200&width=300" alt="WinE members during morning workout">
-                        </div>
-                    </div>
-
-                    <p style="margin-top: 1rem; font-style: italic;">See the highlights from our energizing fitness
-                        sessions!</p>
+                   
                 </div>
             </section>
 
@@ -1037,17 +1024,7 @@
                     <p>Catch all the highlights from KNUST's exciting WinE Games where sisterhood meets sportsmanship in
                         the most incredible way.</p>
 
-                    <div class="image-gallery">
-                        <div class="gallery-image">
-                            <img src="/placeholder.svg?height=200&width=300" alt="WinE volleyball tournament">
-                        </div>
-                        <div class="gallery-image">
-                            <img src="/placeholder.svg?height=200&width=300" alt="Team celebration during WinE Games">
-                        </div>
-                        <div class="gallery-image">
-                            <img src="/placeholder.svg?height=200&width=300" alt="Award ceremony at WinE Games">
-                        </div>
-                    </div>
+               
 
                     <p style="margin-top: 1rem; font-style: italic;">Celebrating teamwork, competition, and community
                         spirit!</p>
@@ -1119,7 +1096,7 @@ const closeMenu = document.getElementById('close-menu');
 
 mobileToggle.addEventListener('click', function () {
     navMenu.classList.add('active');
-    closeMenu.style.display = 'block';
+    closeMenu.style.display = 'flex';
 });
 
 closeMenu.addEventListener('click', function () {

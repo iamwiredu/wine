@@ -77,8 +77,8 @@
             transition: color 0.3s ease;
             position: relative;
         }
-
-        .nav-menu a:hover {
+        .nav-menu a:hover,
+        .nav-menu a.active {
             color: var(--primary-color-2);
         }
 
@@ -93,7 +93,8 @@
             transition: width 0.3s ease;
         }
 
-        .nav-menu a:hover::after {
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
             width: 100%;
         }
 
@@ -111,12 +112,7 @@
             transition: 0.3s;
         }
 
-        .nav-menu .close-btn {
-            position: absolute;
-            top: 1.5rem;
-            right: 2rem;
-        }
-
+   
         #close-menu {
             font-size: 2rem;
             color: var(--primary-color-2);
@@ -311,6 +307,9 @@
             width: 100%;
         }
 
+        .programs-grid a{
+            text-decoration: none;
+        }
         .program-card {
             background: white;
             border-radius: 20px;
@@ -546,13 +545,10 @@
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-                text-align: center;
+               
             }
 
-            .social-links {
-                justify-content: center;
-            }
-
+         
             .container {
                 padding: 0 1rem;
             }
@@ -620,7 +616,7 @@
             </div>
             <ul class="nav-menu" id="nav-menu">
                 <li class="close-btn"><i class="fas fa-times" id="close-menu"></i></li>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
     
                 <li><a href="wine_library.html">WinE Library</a></li>
                 <li><a href="events.html">Main Events</a></li>
@@ -684,7 +680,8 @@
         <div class="container">
             <h2 class="section-title fade-in">Our Key Programs</h2>
             <div class="programs-grid">
-                <div class="program-card fade-in">
+              <a href="wine_library.html">
+                  <div class="program-card fade-in">
                     <div class="program-icon">
                         <i class="fas fa-book-open"></i>
                     </div>
@@ -692,8 +689,10 @@
                     <p>Explore key members, leadership insights, and success stories. Connect with national leaders,
                         learn from inspiring journeys, and discover the achievements of women in renowned companies.</p>
                 </div>
+              </a>
 
-                <div class="program-card fade-in">
+              <a href="wine_library.html">
+                  <div class="program-card fade-in">
                     <div class="program-icon">
                         <i class="fas fa-calendar-alt"></i>
                     </div>
@@ -701,7 +700,10 @@
                     <p>Signature programs including WinE Akwaaba welcome events, WinE Connect Mentorship program, and
                         She Can empowerment workshops focused on self-leadership and resilience.</p>
                 </div>
+              </a>
+<a href="ohub.html">
 
+    
                 <div class="program-card fade-in">
                     <div class="program-icon">
                         <i class="fas fa-rocket"></i>
@@ -710,8 +712,10 @@
                     <p>Connecting members to scholarships, internships, and strategic societies. We provide updates on
                         local and international opportunities tailored to engineering students.</p>
                 </div>
+</a>
 
-                <div class="program-card fade-in">
+         <a href="health_education.html">
+                   <div class="program-card fade-in">
                     <div class="program-icon">
                         <i class="fas fa-heart"></i>
                     </div>
@@ -719,8 +723,10 @@
                     <p>Raising awareness on critical health topics including breast cancer, cervical cancer, menstrual
                         hygiene, and mental health through seminars and campaigns.</p>
                 </div>
+         </a>
 
-                <div class="program-card fade-in">
+              <a href="lifestyle.html">
+                  <div class="program-card fade-in">
                     <div class="program-icon">
                         <i class="fas fa-dumbbell"></i>
                     </div>
@@ -728,8 +734,10 @@
                     <p>Supporting balanced student life through professional branding workshops, LinkedIn optimization,
                         fitness sessions, and friendly sports competitions.</p>
                 </div>
+              </a>
 
-                <div class="program-card fade-in">
+              <a href="blogs.html">
+                  <div class="program-card fade-in">
                     <div class="program-icon">
                         <i class="fas fa-blog"></i>
                     </div>
@@ -737,6 +745,7 @@
                     <p>Personal stories, interviews, and editorials through WinE Affair, plus weekly motivation and
                         career tips through WinE Monday posts.</p>
                 </div>
+              </a>
             </div>
         </div>
     </section>

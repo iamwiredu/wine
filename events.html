@@ -113,9 +113,8 @@
         }
 
         .mobile-close {
-            position: fixed;
-            top: 1rem;
-            right: 1.5rem;
+            display: flex;
+            justify-content: center;
             z-index: 1001;
             display: none;
         }
@@ -311,47 +310,53 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 1rem;
         }
 
         .modal-content {
             position: relative;
-            max-width: 90%;
-            max-height: 90%;
+            width: 90%;
+            max-width: 900px;
             background: white;
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .modal-header {
-            padding: 2rem;
+            padding: 1rem 2rem;
             background: var(--gradient);
             color: white;
             text-align: center;
             position: relative;
+            flex-shrink: 0;
         }
 
         .modal-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0;
         }
 
         .modal-date {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             opacity: 0.9;
+            margin: 0.25rem 0 0 0;
         }
 
         .close-modal {
             position: absolute;
-            top: 1rem;
+            top: 0.75rem;
             right: 1rem;
             background: rgba(255, 255, 255, 0.2);
             border: none;
             color: white;
-            font-size: 1.5rem;
-            width: 40px;
-            height: 40px;
+            font-size: 1.2rem;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
@@ -367,8 +372,9 @@
         .slideshow-container {
             position: relative;
             width: 100%;
-            height: 500px;
+            height: 400px;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .slide {
@@ -395,23 +401,24 @@
             right: 0;
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
             color: white;
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
+            font-size: 0.9rem;
         }
 
         .prev, .next {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             color: white;
             border: none;
-            padding: 1rem;
+            padding: 0.75rem;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1rem;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -432,14 +439,15 @@
 
         .dots-container {
             text-align: center;
-            padding: 2rem;
+            padding: 1rem;
             background: white;
+            flex-shrink: 0;
         }
 
         .dot {
-            height: 15px;
-            width: 15px;
-            margin: 0 5px;
+            height: 12px;
+            width: 12px;
+            margin: 0 4px;
             background-color: #bbb;
             border-radius: 50%;
             display: inline-block;
@@ -555,7 +563,12 @@
             }
 
             .slideshow-container {
-                height: 400px;
+                height: 350px;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-height: 85vh;
             }
         }
 
@@ -612,26 +625,46 @@
             }
 
             .modal-content {
-                max-width: 95%;
-                max-height: 95%;
+                width: 95%;
+                max-height: 90vh;
             }
 
             .modal-header {
-                padding: 1.5rem;
+                padding: 0.75rem 1.5rem;
             }
 
             .modal-title {
-                font-size: 1.5rem;
+                font-size: 1.2rem;
+            }
+
+            .modal-date {
+                font-size: 0.8rem;
             }
 
             .slideshow-container {
-                height: 300px;
+                height: 280px;
             }
 
             .prev, .next {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+                padding: 0.5rem;
+            }
+
+            .slide-caption {
+                padding: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .dots-container {
+                padding: 0.75rem;
+            }
+
+            .dot {
+                height: 10px;
+                width: 10px;
+                margin: 0 3px;
             }
         }
 
@@ -676,30 +709,64 @@
                 height: 2px;
             }
 
+            .modal-content {
+                width: 98%;
+                max-height: 95vh;
+                border-radius: 10px;
+            }
+
             .modal-header {
-                padding: 1rem;
+                padding: 0.5rem 1rem;
             }
 
             .modal-title {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
+            }
+
+            .modal-date {
+                font-size: 0.75rem;
+            }
+
+            .close-modal {
+                top: 0.5rem;
+                right: 0.75rem;
+                width: 28px;
+                height: 28px;
+                font-size: 1rem;
             }
 
             .slideshow-container {
-                height: 250px;
+                height: 220px;
             }
 
             .slide-caption {
-                padding: 1rem;
+                padding: 0.75rem;
+                font-size: 0.75rem;
             }
 
             .prev, .next {
-                width: 35px;
-                height: 35px;
-                font-size: 0.9rem;
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+                padding: 0.4rem;
+            }
+
+            .prev {
+                left: 0.5rem;
+            }
+
+            .next {
+                right: 0.5rem;
             }
 
             .dots-container {
-                padding: 1rem;
+                padding: 0.5rem;
+            }
+
+            .dot {
+                height: 8px;
+                width: 8px;
+                margin: 0 2px;
             }
         }
 
@@ -717,20 +784,49 @@
             }
 
             .slideshow-container {
-                height: 200px;
+                height: 180px;
+            }
+
+            .modal-content {
+                width: 100%;
+                max-height: 100vh;
+                border-radius: 0;
+            }
+        }
+
+        /* Large screens */
+        @media (min-width: 1200px) {
+            .modal-content {
+                max-width: 1000px;
+            }
+
+            .slideshow-container {
+                height: 500px;
+            }
+
+            .modal-header {
+                padding: 1.5rem 2rem;
+            }
+
+            .modal-title {
+                font-size: 1.6rem;
+            }
+
+            .modal-date {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
-
 <body>
     <header class="header" id="header">
         <nav class="nav-container">
             <div class="logo">
                 <img src="images/logo.png" alt="WinE Logo">
             </div>
-            <div class="mobile-close" id="close-menu"><i class="fas fa-times"></i></div>
+            
             <ul class="nav-menu" id="nav-menu">
+                <li class="mobile-close" id="close-menu"><i class="fas fa-times"></i></li>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="wine_library.html">WinE Library</a></li>
                 <li><a class="active" href="events.html">Main Events</a></li>
@@ -760,10 +856,8 @@
                 <div class="event-card" onclick="openModal('linkedin-workshop')">
                     <div class="event-image">
                         <img src="images/events/herizon/1.jpg" alt="HERizon">
-                        
                     </div>
                     <div class="event-content">
-                        
                         <h3 class="event-title">HERizon</h3>
                         <button class="view-gallery">
                             <i class="fas fa-images"></i>
@@ -776,11 +870,9 @@
                 <div class="event-card" onclick="openModal('mentorship-night')">
                     <div class="event-image">
                         <img src="images/events/genmeeting/1.jpg" alt="General Meeting">
-                        
                     </div>
                     <div class="event-content">
                         <h3 class="event-title">General Meeting</h3>
-                        
                         <button class="view-gallery">
                             <i class="fas fa-images"></i>
                             View Event Gallery
@@ -792,7 +884,6 @@
                 <div class="event-card" onclick="openModal('innovation-challenge')">
                     <div class="event-image">
                         <img src="images/events/iwed/1.jpg" alt="Wine Outreach">
-                        
                     </div>
                     <div class="event-content">
                         <h3 class="event-title">Wine Outreach</h3>
@@ -807,7 +898,6 @@
                 <div class="event-card" onclick="openModal('technical-bootcamp')">
                     <div class="event-image">
                         <img src="images/events/iwed_con/1.jpg" alt="IWED Microcontrollers Training">
-                        
                     </div>
                     <div class="event-content">
                         <h3 class="event-title">IWED Microcontrollers Training</h3>
@@ -817,7 +907,6 @@
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </main>
@@ -882,7 +971,7 @@
                     <p>Kwame Nkrumah University of Science and Technology</p>
                     <p>Kumasi, Ghana</p>
                     <p>Email: wine@knust.edu.gh</p>
-             <div class="social-links">
+                    <div class="social-links">
                         <a href="https://www.facebook.com/KNUSTWinE/"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://x.com/Knust_WinE"><i class="fab fa-twitter"></i></a>
                         <a href="https://www.instagram.com/wine_knust_/?hl=en"><i class="fab fa-instagram"></i></a>
@@ -915,7 +1004,7 @@
 
         mobileToggle.addEventListener('click', function () {
             navMenu.classList.add('active');
-            closeMenu.style.display = 'block';
+            closeMenu.style.display = 'flex';
         });
 
         closeMenu.addEventListener('click', function () {
@@ -954,20 +1043,21 @@
                 ],
                 captions: [
                     'HERizon',
-                  'HERizon',   
                     'HERizon',
-                      'HERizon',
-                        'HERizon'
+                    'HERizon',
+                    'HERizon',
+                    'HERizon'
                 ]
             },
             'mentorship-night': {
                 title: 'General Meeting',
-                date: 'February 22, 2024',
+                date: '',
                 images: [
                     'images/events/genmeeting/1.jpg',
                     'images/events/genmeeting/2.jpg',
-                    'image/events/genmeeting/3.jpg',
-                    'images/events/genmeeting/4.jpg'
+                    'images/events/genmeeting/3.jpg',
+                    'images/events/genmeeting/4.jpg',
+                    'images/events/genmeeting/5.jpg'
                 ],
                 captions: [
                     'General Meeting',
@@ -979,7 +1069,7 @@
             },
             'innovation-challenge': {
                 title: 'Wine Outreach',
-                date: 'March 5-7, 2024',
+                date: '',
                 images: [
                     'images/events/iwed/1.jpg',
                     'images/events/iwed/2.jpg',
@@ -993,11 +1083,11 @@
                     'Wine Outreach',
                     'Wine Outreach',
                     'Wine Outreach'
-                     ]
+                ]
             },
             'technical-bootcamp': {
                 title: 'IWED Microcontrollers Training',
-                date: 'March 12, 2024',
+                date: '',
                 images: [
                     'images/events/iwed_con/1.jpg',
                     'images/events/iwed_con/2.jpg',
@@ -1015,7 +1105,7 @@
             },
             'wine-games': {
                 title: 'WinE Games 2024',
-                date: 'March 20, 2024',
+                date: '',
                 images: [
                     '/placeholder.svg?height=500&width=800&text=Opening+Ceremony',
                     '/placeholder.svg?height=500&width=800&text=Volleyball+Tournament',

@@ -62,7 +62,7 @@
             transition: transform 0.3s ease;
         }
 
-        .nav-menu {
+                .nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
@@ -75,8 +75,8 @@
             transition: color 0.3s ease;
             position: relative;
         }
-
-        .nav-menu a:hover {
+        .nav-menu a:hover,
+        .nav-menu a.active {
             color: var(--primary-color-2);
         }
 
@@ -91,9 +91,11 @@
             transition: width 0.3s ease;
         }
 
-        .nav-menu a:hover::after {
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
             width: 100%;
         }
+
 
         .mobile-toggle {
             display: none;
@@ -571,7 +573,6 @@
         
 .nav-menu a {
     display: block;
-    padding: 0.5rem 1rem;
     border-bottom: none;
     width: fit-content;
 }
@@ -805,7 +806,7 @@
             }
 
             .nav-menu {
-                width: 90%;
+                width: 100%;
                 padding: 4rem 1.5rem 2rem;
             }
 
@@ -815,13 +816,11 @@
             }
         }
         .mobile-close {
-    position: fixed;
-    top: 1rem;
-    right: 1.5rem;
+
     z-index: 1001;
     font-size: 2rem;
     color: var(--primary-color-2);
-    padding: 0.5rem;
+  
     display: none;
     cursor: pointer;
     }
@@ -877,8 +876,9 @@
     </nav>
 
     <ul class="nav-menu" id="nav-menu">
+    <li id="close-menu" class="mobile-close"><i class="fas fa-times"></i></li>
       <li><a href="index.html">Home</a></li>
-      <li><a href="wine_library.html">WinE Library</a></li>
+      <li><a class="active" href="wine_library.html">WinE Library</a></li>
       <li><a href="events.html">Main Events</a></li>
       <li><a href="ohub.html">Opportunity Hub</a></li>
       <li><a href="lifestyle.html">Lifestyle</a></li>
@@ -887,13 +887,12 @@
     </ul>
   </div>
 
-  <div id="close-menu" class="mobile-close"><i class="fas fa-times"></i></div>
 </header>
 
     <main class="main-content">
         <div class="container">
             <div class="page-header">
-                <h1 class="page-title">WinE Library</h1>
+                <h1 class="page-title" style="margin-top: 50px;">WinE Library</h1>
                 <p class="page-subtitle">Meet the inspiring leaders, members, and role models who drive our mission forward</p>
             </div>
 
@@ -903,46 +902,23 @@
                     <div class="section-icon">
                         <i class="fas fa-crown"></i>
                     </div>
-                    <h2 class="section-title">Meet Our National Executives</h2>
+                    <h2 class="section-title">Meet Our National Executive</h2>
                 </div>
                 <p class="section-intro">Every flourishing community has leaders that take up the task of organizing, guiding and inspiring the group to greatness. These amazing women are at the forefront of WinE on the national level to support the growth of female engineers and industry players in upcoming generations.</p>
                 
                 <div class="profiles-grid">
                     <div class="profile-card">
                         <div class="profile-image">
-                            <img src="/placeholder.svg?height=120&width=120&text=President" alt="National President">
+                            <img src="images/execs/np.jpg" alt="National President">
                         </div>
-                        <h3 class="profile-name">Dr. Akosua Mensah</h3>
-                        <p class="profile-title">National President</p>
-                        <p class="profile-description">Leading WinE Ghana with vision and dedication to empower the next generation of female engineers across the nation.</p>
-                    </div>
+                        <h3 class="profile-name">Ing. Mrs. Jane Naki Anowie-Tetteh</h3>
+                        <p class="profile-title"> President</p>
+                       </div>
                     
-                    <div class="profile-card">
-                        <div class="profile-image">
-                            <img src="/placeholder.svg?height=120&width=120&text=VP" alt="National Vice President">
-                        </div>
-                        <h3 class="profile-name">Ing. Efua Asante</h3>
-                        <p class="profile-title">National Vice President</p>
-                        <p class="profile-description">Supporting strategic initiatives and fostering collaboration between regional chapters nationwide.</p>
-                    </div>
+             
                     
-                    <div class="profile-card">
-                        <div class="profile-image">
-                            <img src="/placeholder.svg?height=120&width=120&text=Secretary" alt="National Secretary">
-                        </div>
-                        <h3 class="profile-name">Ing. Ama Osei</h3>
-                        <p class="profile-title">National Secretary</p>
-                        <p class="profile-description">Ensuring effective communication and documentation of all national WinE activities and programs.</p>
-                    </div>
-                    
-                    <div class="profile-card">
-                        <div class="profile-image">
-                            <img src="/placeholder.svg?height=120&width=120&text=Treasurer" alt="National Treasurer">
-                        </div>
-                        <h3 class="profile-name">Ing. Abena Boateng</h3>
-                        <p class="profile-title">National Treasurer</p>
-                        <p class="profile-description">Managing financial resources to support WinE programs and ensure sustainable growth across all chapters.</p>
-                    </div>
+              
+                
                 </div>
             </section>
 
@@ -961,27 +937,24 @@
                         <div class="profile-image">
                             <img src="/placeholder.svg?height=120&width=120&text=President" alt="KNUST President">
                         </div>
-                        <h3 class="profile-name">Maame Yaa Osei</h3>
+                        <h3 class="profile-name">Name here</h3>
                         <p class="profile-title">WinE KNUST President</p>
-                        <p class="profile-description">Leading the KNUST chapter with passion and commitment to empowering female engineering students on campus.</p>
                     </div>
                     
                     <div class="profile-card">
                         <div class="profile-image">
                             <img src="/placeholder.svg?height=120&width=120&text=VP" alt="KNUST Vice President">
                         </div>
-                        <h3 class="profile-name">Akosua Amponsah</h3>
+                        <h3 class="profile-name">Name here</h3>
                         <p class="profile-title">WinE KNUST Vice President</p>
-                        <p class="profile-description">Supporting presidential initiatives and coordinating academic and professional development programs.</p>
                     </div>
                     
                     <div class="profile-card">
                         <div class="profile-image">
-                            <img src="/placeholder.svg?height=120&width=120&text=Secretary" alt="KNUST Secretary">
+                            <img src="images/execs/genex.jpg" alt="KNUST Secretary">
                         </div>
-                        <h3 class="profile-name">Esi Antwi</h3>
+                        <h3 class="profile-name">Name here</h3>
                         <p class="profile-title">WinE KNUST General Secretary</p>
-                        <p class="profile-description">Managing communications and maintaining records of all WinE KNUST activities and member engagement.</p>
                     </div>
                     
                     <div class="profile-card">
@@ -996,22 +969,36 @@
                     
                     <div class="profile-card">
                         <div class="profile-image">
-                            <img src="/placeholder.svg?height=120&width=120&text=PRO" alt="KNUST PRO">
+                            <img src="images/execs/proex.jpg" alt="KNUST PRO">
                         </div>
-                        <h3 class="profile-name">Abena Kyei</h3>
+                        <h3 class="profile-name">Name here</h3>
                         <p class="profile-title">WinE KNUST PRO</p>
-                        <p class="profile-description">Managing public relations and promoting WinE KNUST activities across campus and social media platforms.</p>
-                    </div>
+                        </div>
                     
                     <div class="profile-card">
                         <div class="profile-image">
                             <img src="/placeholder.svg?height=120&width=120&text=Organizer" alt="KNUST Organizer">
                         </div>
-                        <h3 class="profile-name">Nana Ama Asante</h3>
+                        <h3 class="profile-name">Name here</h3>
                         <p class="profile-title">WinE KNUST Organizer</p>
-                        <p class="profile-description">Coordinating events, workshops, and networking sessions to enhance member experience and engagement.</p>
+                        </div>
+                               <div class="profile-card">
+                        <div class="profile-image">
+                            <img src="images/execs/edex.jpg" alt="KNUST Editorial Board Head">
+                        </div>
+                        <h3 class="profile-name">Name here</h3>
+                        <p class="profile-title">WinE KNUST Editorial Board Head</p>
+                    </div>
+                           <div class="profile-card">
+                        <div class="profile-image">
+                            <img src="images/execs/subedex.jpg" alt="KNUST Deputy Editorial Board Head">
+                        </div>
+                        <h3 class="profile-name">Name here</h3>
+                        <p class="profile-title">WinE KNUST Deputy Editorial Board Head</p>
                     </div>
                 </div>
+              
+                
             </section>
 
             <!-- Members Spotlight Section -->
