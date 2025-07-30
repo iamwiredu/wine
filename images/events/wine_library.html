@@ -474,6 +474,7 @@
             background: #2c3e50;
             color: white;
             padding: 3rem 0 1rem;
+            width: 100%;
         }
 
         .footer-content {
@@ -691,6 +692,12 @@
                 padding: 2rem 1.5rem;
                 margin: 2rem 0;
             }
+                  .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
         }
 
         @media (max-width: 480px) {
@@ -986,11 +993,11 @@
                     
                     <div class="profile-card">
                         <div class="profile-image">
-                            <img src="images/execs/finex.jpg" alt="KNUST Treasurer">
+                            <img src="/placeholder.svg?height=120&width=120&text=Treasurer" alt="KNUST Treasurer">
                         </div>
-                        <h3 class="profile-name">Ellen Minyila</h3>
+                        <h3 class="profile-name">Adwoa Serwaa</h3>
                         <p class="profile-title">WinE KNUST Financial Secretary</p>
-                        
+                        <p class="profile-description">Overseeing financial planning and resource allocation for student programs and events.</p>
                     </div>
                     
                     
@@ -1165,6 +1172,7 @@
     </main>
 
     <!-- Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -1180,13 +1188,14 @@
                         <a href="https://gh.linkedin.com/in/wineknust"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
+
                 <div class="footer-section">
                     <h3>Quick Links</h3>
-                   
                     <p><a href="events.html">Events</a></p>
                     <p><a href="ohub.html">Opportunities</a></p>
                     <p><a href="blogs.html">Blogs</a></p>
                 </div>
+
                 <div class="footer-section">
                     <h3>Affiliations</h3>
                     <p>Women in Engineering Ghana</p>
@@ -1194,11 +1203,13 @@
                     <p>Ghana Engineering Students Association (GESA)</p>
                 </div>
             </div>
+
             <div class="footer-bottom">
                 <p>&copy; 2025 Women in Engineering (WinE) KNUST. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
 
     <script>
     const mobileToggle = document.getElementById('mobile-toggle');
