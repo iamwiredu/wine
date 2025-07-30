@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Women in Engineering (WinE) KNUST</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color-1: #a50121;
+            --primary-color-2: #cc1c4d;
+            --gradient: linear-gradient(135deg, var(--primary-color-1), var(--primary-color-2));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            max-width: 120px;
+            height: auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+            transition: transform 0.3s ease;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-color-2);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .mobile-close {
+            position: fixed;
+            top: 1rem;
+            right: 1.5rem;
+            z-index: 1001;
+            display: none;
+        }
+
+        #close-menu {
+            font-size: 2rem;
+            color: var(--primary-color-2);
+            cursor: pointer;
+            display: none;
+            z-index: 1001;
+            padding: 0.5rem;
+        }
+
+        .main-content {
+            margin-top: 100px;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: calc(100vh - 100px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .event-card:hover .event-image img {
+            transform: scale(1.05);
+        }
+
+        .event-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-past {
+            background: #6c757d;
+            color: white;
+        }
+
+        .event-content {
+            padding: 2rem;
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color-2);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .event-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .event-details {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .event-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .event-detail i {
+            color: var(--primary-color-2);
+            width: 16px;
+        }
+
+        .view-gallery {
+            background: var(--gradient);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .view-gallery:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(165, 1, 33, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            padding: 2rem;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-date {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .prev {
+            left: 1rem;
+        }
+
+        .next {
+            right: 1rem;
+        }
+
+        .prev:hover, .next:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .dots-container {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+        }
+
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active, .dot:hover {
+            background-color: var(--primary-color-2);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #a50121;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #a50121;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 1024px) {
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                padding-top: 3rem;
+                transition: left 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .events-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .slideshow-container {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .main-content {
+                padding: 2rem 0;
+            }
+
+            .page-header {
+                margin-bottom: 2rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .page-subtitle {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .event-card {
+                border-radius: 15px;
+            }
+
+            .event-image {
+                height: 200px;
+            }
+
+            .event-content {
+                padding: 1.5rem;
+            }
+
+            .event-title {
+                font-size: 1.3rem;
+            }
+
+            .event-details {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .modal-content {
+                max-width: 95%;
+                max-height: 95%;
+            }
+
+            .modal-header {
+                padding: 1.5rem;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .slideshow-container {
+                height: 300px;
+            }
+
+            .prev, .next {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo img {
+                max-width: 100px;
+            }
+
+            .container {
+                padding: 0 0.75rem;
+            }
+
+            .main-content {
+                margin-top: 80px;
+                padding: 1.5rem 0;
+            }
+
+            .page-title {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .page-subtitle {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+            }
+
+            .event-content {
+                padding: 1.25rem;
+            }
+
+            .event-title {
+                font-size: 1.2rem;
+            }
+
+            .mobile-toggle span {
+                width: 22px;
+                height: 2px;
+            }
+
+            .modal-header {
+                padding: 1rem;
+            }
+
+            .modal-title {
+                font-size: 1.3rem;
+            }
+
+            .slideshow-container {
+                height: 250px;
+            }
+
+            .slide-caption {
+                padding: 1rem;
+            }
+
+            .prev, .next {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+
+            .dots-container {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .event-content {
+                padding: 1rem;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .slideshow-container {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="WinE Logo">
+            </div>
+            <div class="mobile-close" id="close-menu"><i class="fas fa-times"></i></div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="wine_library.html">WinE Library</a></li>
+                <li><a class="active" href="events.html">Main Events</a></li>
+                <li><a href="ohub.html">Opportunity Hub</a></li>
+                <li><a href="lifestyle.html">Lifestyle</a></li>
+                <li><a href="health_education.html">Health Education</a></li>
+                <li><a href="#blogs">Blogs</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Past Events</h1>
+                <p class="page-subtitle">Explore highlights from our previous workshops, networking sessions, and community activities that empowered women in engineering</p>
+            </div>
+
+            <!-- Events Grid -->
+            <div class="events-grid">
+                <!-- Event Card 1 -->
+                <div class="event-card" onclick="openModal('linkedin-workshop')">
+                    <div class="event-image">
+                        <img src="images/events/herizon/1.jpg" alt="HERizon">
+                        <div class="event-status status-past">Past Event</div>
+                    </div>
+                    <div class="event-content">
+                        
+                        <h3 class="event-title">HERizon</h3>
+                        <button class="view-gallery">
+                            <i class="fas fa-images"></i>
+                            View Event Gallery
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Event Card 2 -->
+                <div class="event-card" onclick="openModal('mentorship-night')">
+                    <div class="event-image">
+                        <img src="images/events/genmeeting/1.jpg" alt="General Meeting">
+                        <div class="event-status status-past">Past Event</div>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">General Meeting</h3>
+                        
+                        <button class="view-gallery">
+                            <i class="fas fa-images"></i>
+                            View Event Gallery
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Event Card 3 -->
+                <div class="event-card" onclick="openModal('innovation-challenge')">
+                    <div class="event-image">
+                        <img src="images/events/iwed/1.jpg" alt="Wine Outreach">
+                        <div class="event-status status-past">Past Event</div>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Wine Outreach</h3>
+                        <button class="view-gallery">
+                            <i class="fas fa-images"></i>
+                            View Event Gallery
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Event Card 4 -->
+                <div class="event-card" onclick="openModal('technical-bootcamp')">
+                    <div class="event-image">
+                        <img src="images/events/iwed_con/1.jpg" alt="IWED Microcontrollers Training">
+                        <div class="event-status status-past">Past Event</div>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">IWED Microcontrollers Training</h3>
+                        <button class="view-gallery">
+                            <i class="fas fa-images"></i>
+                            View Event Gallery
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Event Gallery -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 class="modal-title" id="modalTitle">Event Title</h2>
+                <p class="modal-date" id="modalDate">Event Date</p>
+            </div>
+            
+            <div class="slideshow-container">
+                <div class="slide active">
+                    <img id="slide1" src="/placeholder.svg" alt="Event Image 1">
+                    <div class="slide-caption" id="caption1">Event highlights and memorable moments</div>
+                </div>
+                <div class="slide">
+                    <img id="slide2" src="/placeholder.svg" alt="Event Image 2">
+                    <div class="slide-caption" id="caption2">Participants engaging in activities</div>
+                </div>
+                <div class="slide">
+                    <img id="slide3" src="/placeholder.svg" alt="Event Image 3">
+                    <div class="slide-caption" id="caption3">Learning and networking sessions</div>
+                </div>
+                <div class="slide">
+                    <img id="slide4" src="/placeholder.svg" alt="Event Image 4">
+                    <div class="slide-caption" id="caption4">Team collaboration and achievements</div>
+                </div>
+                <div class="slide">
+                    <img id="slide5" src="/placeholder.svg" alt="Event Image 5">
+                    <div class="slide-caption" id="caption5">Celebration and closing ceremony</div>
+                </div>
+                
+                <button class="prev" onclick="changeSlide(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="next" onclick="changeSlide(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="dots-container">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Kwame Nkrumah University of Science and Technology</p>
+                    <p>Kumasi, Ghana</p>
+                    <p>Email: wine@knust.edu.gh</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="events.html">Events</a></p>
+                    <p><a href="ohub.html">Opportunities</a></p>
+                    <p><a href="blogs.html">Blogs</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Affiliations</h3>
+                    <p>Women in Engineering Ghana</p>
+                    <p>Ghana Institution of Engineers (GhIE)</p>
+                    <p>Ghana Engineering Students Association (GESA)</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Women in Engineering (WinE) KNUST. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const closeMenu = document.getElementById('close-menu');
+
+        mobileToggle.addEventListener('click', function () {
+            navMenu.classList.add('active');
+            closeMenu.style.display = 'block';
+        });
+
+        closeMenu.addEventListener('click', function () {
+            navMenu.classList.remove('active');
+            closeMenu.style.display = 'none';
+        });
+
+        // Close nav when clicking a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                closeMenu.style.display = 'none';
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            header.classList.toggle('scrolled', window.scrollY > 100);
+        });
+
+        // Slideshow functionality
+        let slideIndex = 1;
+
+        const eventData = {
+            'linkedin-workshop': {
+                title: 'HERizon',
+                date: '',
+                images: [
+                    'images/events/herizon/1.jpg',
+                    'images/events/herizon/2.jpg',
+                    'images/events/herizon/3.jpg',
+                    'images/events/herizon/4.jpg',
+                    'images/events/herizon/5.jpg'
+                ],
+                captions: [
+                    'HERizon',
+                  'HERizon',   
+                    'HERizon',
+                      'HERizon',
+                        'HERizon'
+                ]
+            },
+            'mentorship-night': {
+                title: 'General Meeting',
+                date: 'February 22, 2024',
+                images: [
+                    'images/events/genmeeting/1.jpg',
+                    'images/events/genmeeting/2.jpg',
+                    'image/events/genmeeting/3.jpg',
+                    'images/events/genmeeting/4.jpg'
+                ],
+                captions: [
+                    'General Meeting',
+                    'General Meeting',
+                    'General Meeting',
+                    'General Meeting',
+                    'General Meeting'
+                ]
+            },
+            'innovation-challenge': {
+                title: 'Wine Outreach',
+                date: 'March 5-7, 2024',
+                images: [
+                    'images/events/iwed/1.jpg',
+                    'images/events/iwed/2.jpg',
+                    'images/events/iwed/3.jpg',
+                    'images/events/iwed/4.jpg',
+                    'images/events/iwed/5.jpg'
+                ],
+                captions: [
+                    'Wine Outreach',
+                    'Wine Outreach',
+                    'Wine Outreach',
+                    'Wine Outreach',
+                    'Wine Outreach'
+                     ]
+            },
+            'technical-bootcamp': {
+                title: 'IWED Microcontrollers Training',
+                date: 'March 12, 2024',
+                images: [
+                    'images/events/iwed_con/1.jpg',
+                    'images/events/iwed_con/2.jpg',
+                    'images/events/iwed_con/3.jpg',
+                    'images/events/iwed_con/4.jpg',
+                    'images/events/iwed_con/5.jpg'
+                ],
+                captions: [
+                    'Python programming fundamentals',
+                    'Data analysis techniques and tools',
+                    'Project management software training',
+                    'Hands-on practice sessions',
+                    'Skills assessment and feedback'
+                ]
+            },
+            'wine-games': {
+                title: 'WinE Games 2024',
+                date: 'March 20, 2024',
+                images: [
+                    '/placeholder.svg?height=500&width=800&text=Opening+Ceremony',
+                    '/placeholder.svg?height=500&width=800&text=Volleyball+Tournament',
+                    '/placeholder.svg?height=500&width=800&text=Basketball+Competition',
+                    '/placeholder.svg?height=500&width=800&text=Track+Events',
+                    '/placeholder.svg?height=500&width=800&text=Victory+Celebration'
+                ],
+                captions: [
+                    'Opening ceremony and team parade',
+                    'Exciting volleyball tournament matches',
+                    'Competitive basketball games',
+                    'Track and field events',
+                    'Victory celebration and medal ceremony'
+                ]
+            }
+        };
+
+        function openModal(eventId) {
+            const modal = document.getElementById('eventModal');
+            const data = eventData[eventId];
+            
+            if (data) {
+                document.getElementById('modalTitle').textContent = data.title;
+                document.getElementById('modalDate').textContent = data.date;
+                
+                // Update images and captions
+                for (let i = 1; i <= 5; i++) {
+                    document.getElementById(`slide${i}`).src = data.images[i-1];
+                    document.getElementById(`caption${i}`).textContent = data.captions[i-1];
+                }
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                slideIndex = 1;
+                showSlide(slideIndex);
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('eventModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeSlide(n) {
+            showSlide(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlide(slideIndex = n);
+        }
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            if (n > slides.length) { slideIndex = 1; }
+            if (n < 1) { slideIndex = slides.length; }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[slideIndex - 1].classList.add('active');
+            dots[slideIndex - 1].classList.add('active');
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('eventModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('eventModal');
+            if (modal.classList.contains('active')) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                } else if (event.key === 'ArrowLeft') {
+                    changeSlide(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeSlide(1);
+                }
+            }
+        });
+
+        // Fix for viewport units on mobile
+        function setVH() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+        setVH();
+        window.addEventListener('resize', setVH);
+    </script>
+</body>
+</html>
