@@ -795,6 +795,121 @@
                 display: flex;
                 justify-content: center;
             }
+/* ===== Aerobics Image Slider ===== */
+.aero-slider {
+  position: relative;
+  margin-top: 1.5rem;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+  background: #000; /* prevents white flash while loading */
+}
+
+.aero-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.aero-track {
+  list-style: none;
+  display: flex;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  transition: transform 500ms cubic-bezier(.2,.7,.2,1);
+  will-change: transform;
+}
+
+.aero-slide {
+  position: relative;
+  min-width: 100%;
+  height: clamp(220px, 42vw, 520px);
+  user-select: none;
+}
+
+.aero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Gradient edges for nicer look */
+.aero-slider::before,
+.aero-slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  pointer-events: none;
+  z-index: 2;
+}
+.aero-slider::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,.25), rgba(0,0,0,0));
+}
+.aero-slider::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(0,0,0,.25), rgba(0,0,0,0));
+}
+
+/* Arrows */
+.aero-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(165,1,33,0.35);
+  transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+  opacity: .95;
+}
+.aero-nav:hover { transform: translateY(-50%) scale(1.05); }
+.aero-prev { left: 10px; }
+.aero-next { right: 10px; }
+
+/* Dots */
+.aero-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+.aero-dots button {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255,255,255,.55);
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+.aero-dots button[aria-selected="true"] {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+/* Pause on hover cue */
+.aero-slider:hover .aero-nav { opacity: 1; }
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .aero-nav { width: 40px; height: 40px; }
+  .aero-slider::before, .aero-slider::after { width: 80px; }
+}
 
     </style>
 </head>
@@ -1005,6 +1120,49 @@
 
                    
                 </div>
+                <div class="aero-slider" id="aero-slider">
+  <button class="aero-nav aero-prev" aria-label="Previous slide">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+
+  <div class="aero-viewport">
+    <ul class="aero-track">
+      <!-- Repeat .aero-slide for each image -->
+      <li class="aero-slide" aria-hidden="false">
+        <img src="images/aeb/1.jpg" alt="WinE aerobics—warm up session">
+      </li>
+      <li class="aero-slide" aria-hidden="true">
+        <img src="images/aeb/2.jpg" alt="Group cardio routine">
+      </li>
+      <li class="aero-slide" aria-hidden="true">
+        <img src="images/aeb/3.jpg" alt="Stretching and cool down">
+      </li>
+      
+      <li class="aero-slide" aria-hidden="true">
+        <img src="images/aeb/4.jpg" alt="Stretching and cool down">
+      </li>
+      
+      <li class="aero-slide" aria-hidden="true">
+        <img src="images/aeb/5.jpg" alt="Stretching and cool down">
+      </li>
+      
+      <li class="aero-slide" aria-hidden="true">
+        <img src="images/aeb/6.jpg" alt="Stretching and cool down">
+      </li>
+      
+      <li class="aero-slide" aria-hidden="true">
+        <img src="images/aeb/7.jpg" alt="Stretching and cool down">
+      </li>
+    </ul>
+  </div>
+
+  <button class="aero-nav aero-next" aria-label="Next slide">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+
+  <div class="aero-dots" role="tablist" aria-label="Aerobics gallery"></div>
+</div>
+
             </section>
 
             <!-- WinE Games Section -->
@@ -1147,6 +1305,123 @@ navLinks.forEach(link => {
 
         setVH();
         window.addEventListener('resize', setVH);
+        // ===== Aerobics Slider =====
+(function () {
+  const slider = document.getElementById('aero-slider');
+  if (!slider) return;
+
+  const track = slider.querySelector('.aero-track');
+  const slides = Array.from(slider.querySelectorAll('.aero-slide'));
+  const prevBtn = slider.querySelector('.aero-prev');
+  const nextBtn = slider.querySelector('.aero-next');
+  const dotsWrap = slider.querySelector('.aero-dots');
+
+  let index = 0;
+  let autoplayTimer = null;
+  const AUTOPLAY_MS = 3500;
+  const TRANSITION_MS = 500;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.role = 'tab';
+    b.setAttribute('aria-label', `Go to slide ${i + 1}`);
+    b.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(b);
+  });
+
+  function updateUI() {
+    // move track
+    track.style.transform = `translateX(${-index * 100}%)`;
+    // aria + dots
+    slides.forEach((s, i) => s.setAttribute('aria-hidden', i !== index));
+    dotsWrap.querySelectorAll('button').forEach((d, i) => {
+      d.setAttribute('aria-selected', i === index ? 'true' : 'false');
+    });
+    // disable arrows at ends if you want non-looping behaviour (we loop)
+  }
+
+  function goTo(i) {
+    index = (i + slides.length) % slides.length; // loop
+    updateUI();
+    restartAutoplay();
+  }
+
+  function next() { goTo(index + 1); }
+  function prev() { goTo(index - 1); }
+
+  // Autoplay
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(next, AUTOPLAY_MS);
+  }
+  function stopAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    autoplayTimer = null;
+  }
+  function restartAutoplay() {
+    if (autoplayTimer) {
+      stopAutoplay();
+      startAutoplay();
+    }
+  }
+
+  // Buttons
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+
+  // Pause on hover / focus
+  slider.addEventListener('mouseenter', stopAutoplay);
+  slider.addEventListener('mouseleave', startAutoplay);
+  slider.addEventListener('focusin', stopAutoplay);
+  slider.addEventListener('focusout', startAutoplay);
+
+  // Swipe support
+  let startX = 0, deltaX = 0, locked = false;
+  const threshold = 40;
+
+  function onStart(e) {
+    locked = true;
+    startX = (e.touches ? e.touches[0].clientX : e.clientX);
+    deltaX = 0;
+    track.style.transition = 'none';
+  }
+  function onMove(e) {
+    if (!locked) return;
+    const x = (e.touches ? e.touches[0].clientX : e.clientX);
+    deltaX = x - startX;
+    track.style.transform = `translateX(calc(${-index * 100}% + ${deltaX}px))`;
+  }
+  function onEnd() {
+    if (!locked) return;
+    locked = false;
+    track.style.transition = `transform ${TRANSITION_MS}ms cubic-bezier(.2,.7,.2,1)`;
+    if (Math.abs(deltaX) > threshold) {
+      deltaX < 0 ? next() : prev();
+    } else {
+      updateUI();
+    }
+  }
+
+  slider.addEventListener('mousedown', onStart);
+  slider.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onEnd);
+  slider.addEventListener('touchstart', onStart, { passive: true });
+  slider.addEventListener('touchmove', onMove, { passive: true });
+  slider.addEventListener('touchend', onEnd);
+
+  // Keyboard (left/right)
+  slider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  // Init
+  updateUI();
+  startAutoplay();
+})();
+
     </script>
 </body>
 

@@ -860,6 +860,13 @@
   }
 }
 
+/* Force one-column layout for the members section only */
+.members-section .profiles-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* space between cards */
+}
+
     </style>
 </head>
 
@@ -1002,7 +1009,7 @@
             </section>
 
             <!-- Members Spotlight Section -->
-            <section class="library-section">
+            <section class="library-section members-section">
                 <div class="section-header">
                     <div class="section-icon">
                         <i class="fas fa-users"></i>
@@ -1013,28 +1020,90 @@
                 
                 <div class="profiles-grid">
                     <div class="profile-card">
-                        <h3 class="profile-name">Sarah Mensah</h3>
-                        <p class="profile-title">Civil Engineering, Level 300</p>
-                        <p class="profile-description">"WinE has given me the confidence to pursue my dreams in structural engineering. The mentorship and support system here is incredible."</p>
+                               <div class="profile-image">
+                            <img src="images/int/1.jpg" alt="Profile Image">
+                        </div>
+                        <h3 class="profile-name">Stephanie Adwoa Konadu </h3>
+                        <p class="profile-title">Civil Engineering, Level 200</p>
+                        <p class="profile-description">WinE KNUST has profoundly impacted my life this year. Through WinE Connect, I gained a lifelong mentor, an inspiring woman in the industry. SHECAN empowered me with a transformative truth: regardless of background, a woman can achieve greatness and become unstoppable.</p>
                     </div>
                     
                     <div class="profile-card">
+                        <div class="profile-image">
+                            <img src="images/int/2.jpg" alt="Profile Image">
+                        </div>
                     
-                        <h3 class="profile-name">Grace Owusu</h3>
+                        <h3 class="profile-name">Miriam Erzomah Nwea Boah</h3>
+                        <p class="profile-title">Petroleum Engineering, Level 400</p>
+                        <p class="profile-description">Being part of WiNE KNUST has empowered me to build meaningful networks and gain confidence to excel in engineering. The community continually inspires me to push boundaries and aim higher.
+Thank you, WiNE KNUST.</p>
+                    </div>
+                    
+                    <div class="profile-card">
+                                              <div class="profile-image">
+                            <img src="images/int/3.jpg" alt="Profile Image">
+                        </div>
+                    
+                        <h3 class="profile-name">Mary Afua Saah Opoku</h3>
+                        <p class="profile-title">Geomatic Engineering, Level 400</p>
+                        <p class="profile-description">I’m Mary Afua Saah Opoku, a 4th year Geomatic engineering student, KNUST.
+Being apart of WinE has not only encouraged me to go all out and and work towards achieving my dreams of becoming a successful female engineer, but has also made me realize that, women are not limited to what career paths to choose and they can do what ever they put their minds to.</p>
+                    </div>
+                    
+                    <div class="profile-card">
+                    <div class="profile-image">
+                            <img src="images/int/4.jpg" alt="Profile Image">
+                        </div>
+                    
+                        <h3 class="profile-name">Dankwah Ellen Baah </h3>
+                        <p class="profile-title">Biomedical Engineering, Level 200</p>
+                        <p class="profile-description">“I first got to know about WinE KNUST during SheCan 3.0, and that experience was unforgettable. From then on, I made it a point to participate in every WinE program. WinE has given me opportunities and exposure I never imagined — from working with amazing people to gaining hands-on skills in areas like machine learning Through SheCodes,an initiative by WiNE KNUST.I joined a team that took part in a challenge(SheCodes challenge), and we eventually won.
+
+Through WinE Mentorship and WinE Connect, I gained a mentor, Engineer Alberta, who continues to guide me through my academic and professional growth. I also got to know avout RAIL and even went through their Mentorship Program through WinE. The WinE Horizon Conference also opened doors to connect with industry leaders and inspiring individuals I wouldn’t have met otherwise. Not forgetting SheCan 4.0 which reminded that Beyond Backgrounds I could do anything. From the classroom to various outreaches (SHS schools) to a lot of extracurricular activities,  WINE has given me that platform and encouragement. Being part of WinE KNUST family has truly shaped my journey, equipping me with knowledge, skills, and a strong network to thrive as a woman in engineering.”
+Thank you very much WiNE KNUST</p>
+                    </div>
+
+                              <div class="profile-card">
+                                              <div class="profile-image">
+                            <img src="images/int/5.jpg" alt="Profile Image">
+                        </div>
+                    
+                        <h3 class="profile-name"> Sandra Opoku</h3>
+                        <p class="profile-title">Telecommunications Engineering, Level 300</p>
+                        <p class="profile-description">I'm Sandra Opoku, 3rd year Telecommunications Engineering. I served as the women's commissioner for the 2024/2025 academic year. I will start off with the WinE Connect that took place in March; I had the opportunity to listen to professional female engineers who shared their lifetime experiences with us and also gave us the opportunity to ask every question we needed answers to. Not only that, we are still in touch with them, and they have assured us to contact them in times of need and for opportunities in our various fields. WinE KNUST brought to my way a number of virtual summits that made me learn more. There were other in person programs that I served as MC and usher, which I considered as opportunities to improve myself. In summary, I will say WinE KNUST has been a source of opportunities that people pay to get them, and i am very honoured to receive such opportunities.</p>
+                    </div>
+
+                    
+                    <div class="profile-card">
+                                              <div class="profile-image">
+                            <img src="images/int/6.jpg" alt="Profile Image">
+                        </div>
+                    
+                        <h3 class="profile-name">Emmanuella Senior Kusi</h3>
+                        <p class="profile-title">Metallurgical Engineering, Level 100</p>
+                        <p class="profile-description">As a budding engineering student, my first encounter with WinE completely amazed me. It opened my eyes to how much engineering can be entertaining, inspiring, educative, and more. Seeing capable women in engineering like Ing. Mrs. Jane Naki Tetteh-Anowie, the WinE Ghana President; Dr. Augustina Angelina Sylverken, a virologist; and Ing. Mary Doe, the Former WinE KNUST President, come in and discuss their careers, life as engineers, and other topics was just too inspiring. As a member, WinE KNUST did not only give me the chance to connect with like-minded individuals and mentors and a platform to develop my skills and confidence. It gave me the passion to pursue engineering.
+Now, I can boldly say that to me, WinE KNUST isn’t just a club or society; it is the beginning of my engineering story!</p>
+                    </div>
+
+                                        
+                    <div class="profile-card">
+                                              <div class="profile-image">
+                            <img src="images/int/7.jpg" alt="Profile Image">
+                        </div>
+                    
+                        <h3 class="profile-name"> Emmanuella Araba Otoo</h3>
                         <p class="profile-title">Electrical Engineering, Level 400</p>
-                        <p class="profile-description">"Through WinE, I've discovered my passion for renewable energy and connected with industry professionals who guide my career path."</p>
-                    </div>
-                    
-                    <div class="profile-card">
-                        <h3 class="profile-name">Priscilla Boateng</h3>
-                        <p class="profile-title">Mechanical Engineering, Level 200</p>
-                        <p class="profile-description">"WinE has taught me that being a female engineer is not a limitation but a strength. I'm proud to be part of this community."</p>
-                    </div>
-                    
-                    <div class="profile-card">
-                        <h3 class="profile-name">Joana Asante</h3>
-                        <p class="profile-title">Chemical Engineering, Level 300</p>
-                        <p class="profile-description">"The networking opportunities and professional development workshops have prepared me for the industry like nothing else could."</p>
+                        <p class="profile-description">I'm Emmanuella Araba Otoo. A final year Electrical and Electronics engineering student. 
+When I first stepped onto campus as a fresh Electrical and Electronics Engineering student, I had no idea what the journey ahead would hold.
+Looking back now, I realize how fortunate I was to find the WinE-KNUST community.
+This is not just an association—it is truly a family that nurtures, supports, and empowers.
+Through WinE-KNUST, I have been mentored by incredible women who inspired me to aim higher.
+I gained the courage to lead, the wisdom to grow, and the heart to serve.
+The SheCodes initiative was another turning point, equipping me with valuable coding skills.
+These skills are not just technical—they are stepping stones into a competitive job market.
+Every experience here has shaped me into a more confident, capable, and visionary engineer.
+I am deeply grateful for the bonds formed, the lessons learned, and the dreams ignited.
+If there’s one thing I’ve learned, it’s that with the right people around you, you can achieve more than you ever imagined.</p>
                     </div>
                 </div>
             </section>
