@@ -921,6 +921,19 @@
                         </button>
                     </div>
                 </div>
+
+                <div class="event-card" onclick="openModal('wineCon')">
+                    <div class="event-image">
+                        <img src="images/events/wineCon/1.jpg" alt="WinE Connect Mentorship">
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title"> WinE Connect Mentorship</h3>
+                        <button class="view-gallery">
+                            <i class="fas fa-images"></i>
+                            View Event Gallery
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -936,43 +949,16 @@
                 <p class="modal-date" id="modalDate">Event Date</p>
             </div>
             
-            <div class="slideshow-container">
-                <div class="slide active">
-                    <img id="slide1" src="/placeholder.svg" alt="Event Image 1">
-                    <div class="slide-caption" id="caption1">Event highlights and memorable moments</div>
-                </div>
-                <div class="slide">
-                    <img id="slide2" src="/placeholder.svg" alt="Event Image 2">
-                    <div class="slide-caption" id="caption2">Participants engaging in activities</div>
-                </div>
-                <div class="slide">
-                    <img id="slide3" src="/placeholder.svg" alt="Event Image 3">
-                    <div class="slide-caption" id="caption3">Learning and networking sessions</div>
-                </div>
-                <div class="slide">
-                    <img id="slide4" src="/placeholder.svg" alt="Event Image 4">
-                    <div class="slide-caption" id="caption4">Team collaboration and achievements</div>
-                </div>
-                <div class="slide">
-                    <img id="slide5" src="/placeholder.svg" alt="Event Image 5">
-                    <div class="slide-caption" id="caption5">Celebration and closing ceremony</div>
-                </div>
-                
-                <button class="prev" onclick="changeSlide(-1)">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="next" onclick="changeSlide(1)">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            
-            <div class="dots-container">
-                <span class="dot active" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span>
-            </div>
+     <div class="slideshow-container" id="slideshow"></div>
+<button class="prev" onclick="changeSlide(-1)">
+  <i class="fas fa-chevron-left"></i>
+</button>
+<button class="next" onclick="changeSlide(1)">
+  <i class="fas fa-chevron-right"></i>
+</button>
+
+<div class="dots-container" id="dots"></div>
+
         </div>
     </div>
 
@@ -986,10 +972,10 @@
                     <p>Kumasi, Ghana</p>
                     <p>Email: wine@knust.edu.gh</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/KNUSTWinE/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.tiktok.com/@wine_knust?_t=ZM-8yg85rKXNSA&_r=1"><i class="fab fa-tiktok"></i></a>
                         <a href="https://x.com/Knust_WinE"><i class="fab fa-twitter"></i></a>
                         <a href="https://www.instagram.com/wine_knust_/?hl=en"><i class="fab fa-instagram"></i></a>
-                        <a href="https://gh.linkedin.com/in/wineknust"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/company/wine-knust/about/?viewAsMember=true"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -1010,230 +996,313 @@
             </div>
         </div>
     </footer>
+<script>
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  const closeMenu = document.getElementById('close-menu');
 
-    <script>
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        const closeMenu = document.getElementById('close-menu');
+  mobileToggle.addEventListener('click', function () {
+    navMenu.classList.add('active');
+    closeMenu.style.display = 'flex';
+  });
 
-        mobileToggle.addEventListener('click', function () {
-            navMenu.classList.add('active');
-            closeMenu.style.display = 'flex';
-        });
+  closeMenu.addEventListener('click', function () {
+    navMenu.classList.remove('active');
+    closeMenu.style.display = 'none';
+  });
 
-        closeMenu.addEventListener('click', function () {
-            navMenu.classList.remove('active');
-            closeMenu.style.display = 'none';
-        });
+  // Close nav when clicking a link
+  const navLinks = document.querySelectorAll('.nav-menu a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+      closeMenu.style.display = 'none';
+    });
+  });
 
-        // Close nav when clicking a link
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                closeMenu.style.display = 'none';
-            });
-        });
+  // Header scroll effect
+  window.addEventListener('scroll', function () {
+    const header = document.getElementById('header');
+    header.classList.toggle('scrolled', window.scrollY > 100);
+  });
 
-        // Header scroll effect
-        window.addEventListener('scroll', function () {
-            const header = document.getElementById('header');
-            header.classList.toggle('scrolled', window.scrollY > 100);
-        });
+  // Slideshow state
+  let slideIndex = 1;
 
-        // Slideshow functionality
-        let slideIndex = 1;
+  // Event data
+  const eventData = {
+    'linkedin-workshop': {
+      title: 'HERizon',
+      date: '',
+      images: [
+        'images/events/herizon/1.jpg',
+        'images/events/herizon/2.jpg',
+        'images/events/herizon/3.jpg',
+        'images/events/herizon/4.jpg',
+        'images/events/herizon/5.jpg'
+      ],
+      captions: [
+        'HERizon',
+        'HERizon',
+        'HERizon',
+        'HERizon',
+        'HERizon'
+      ]
+    },
+    'mentorship-night': {
+      title: 'General Meeting',
+      date: '',
+      images: [
+        'images/events/genmeeting/1.jpg',
+        'images/events/genmeeting/2.jpg',
+        'images/events/genmeeting/3.jpg',
+        'images/events/genmeeting/4.jpg',
+        'images/events/genmeeting/5.jpg'
+      ],
+      captions: [
+        'General Meeting',
+        'General Meeting',
+        'General Meeting',
+        'General Meeting',
+        'General Meeting'
+      ]
+    },
+    'innovation-challenge': {
+      title: 'Wine Outreach',
+      date: '',
+      images: [
+        'images/events/iwed/1.jpg',
+        'images/events/iwed/2.jpg',
+        'images/events/iwed/3.jpg',
+        'images/events/iwed/4.jpg',
+        'images/events/iwed/5.jpg'
+      ],
+      captions: [
+        'Wine Outreach',
+        'Wine Outreach',
+        'Wine Outreach',
+        'Wine Outreach',
+        'Wine Outreach'
+      ]
+    },
+    'technical-bootcamp': {
+      title: 'IWED Microcontrollers Training',
+      date: '',
+      images: [
+        'images/events/iwed_con/1.jpg',
+        'images/events/iwed_con/2.jpg',
+        'images/events/iwed_con/3.jpg',
+        'images/events/iwed_con/4.jpg',
+        'images/events/iwed_con/5.jpg'
+      ],
+      captions: [
+        'Python programming fundamentals',
+        'Data analysis techniques and tools',
+        'Project management software training',
+        'Hands-on practice sessions',
+        'Skills assessment and feedback'
+      ]
+    },
+    'shecan': {
+      title: 'She Can',
+      date: '',
+      images: [
+        'images/events/shecan/1.jpg',
+        'images/events/shecan/2.jpg',
+        'images/events/shecan/3.jpg',
+        'images/events/shecan/4.jpg',
+        'images/events/shecan/5.jpg',
+        'images/events/shecan/6.jpg',
+        'images/events/shecan/7.jpg',
+        'images/events/shecan/8.jpg',
+        'images/events/shecan/9.jpg',
+        'images/events/shecan/10.jpg',
+        'images/events/shecan/11.jpg',
+        'images/events/shecan/12.jpg'
+      ],
+      captions: [
+        'She Can',
+        'She Can',
+        'She Can',
+        'She Can',
+        'She Can',
+        'She Can',
+        'She Can',
+        'She Can',
+        'She Can',
+        'She Can',
+        'She Can',
+        'She Can'
+      ]
+    },
+    'wineCon': {
+      title: 'WinE Connect Mentorship',
+      date: '',
+      images: [
+        'images/events/wineCon/1.jpg',
+        'images/events/wineCon/2.jpg',
+        'images/events/wineCon/3.jpg',
+        'images/events/wineCon/4.jpg',
+        'images/events/wineCon/5.jpg'
+      ],
+      captions: [
+        'WinE Connect Mentorship',
+        'WinE Connect Mentorship',
+        'WinE Connect Mentorship',
+        'WinE Connect Mentorship',
+        'WinE Connect Mentorship'
+      ]
+    },
+    'wine-games': {
+      title: 'WinE Games 2024',
+      date: '',
+      images: [
+        '/placeholder.svg?height=500&width=800&text=Opening+Ceremony',
+        '/placeholder.svg?height=500&width=800&text=Volleyball+Tournament',
+        '/placeholder.svg?height=500&width=800&text=Basketball+Competition',
+        '/placeholder.svg?height=500&width=800&text=Track+Events',
+        '/placeholder.svg?height=500&width=800&text=Victory+Celebration'
+      ],
+      captions: [
+        'Opening ceremony and team parade',
+        'Exciting volleyball tournament matches',
+        'Competitive basketball games',
+        'Track and field events',
+        'Victory celebration and medal ceremony'
+      ]
+    }
+  };
 
-        const eventData = {
-            'linkedin-workshop': {
-                title: 'HERizon',
-                date: '',
-                images: [
-                    'images/events/herizon/1.jpg',
-                    'images/events/herizon/2.jpg',
-                    'images/events/herizon/3.jpg',
-                    'images/events/herizon/4.jpg',
-                    'images/events/herizon/5.jpg'
-                ],
-                captions: [
-                    'HERizon',
-                    'HERizon',
-                    'HERizon',
-                    'HERizon',
-                    'HERizon'
-                ]
-            },
-            'mentorship-night': {
-                title: 'General Meeting',
-                date: '',
-                images: [
-                    'images/events/genmeeting/1.jpg',
-                    'images/events/genmeeting/2.jpg',
-                    'images/events/genmeeting/3.jpg',
-                    'images/events/genmeeting/4.jpg',
-                    'images/events/genmeeting/5.jpg'
-                ],
-                captions: [
-                    'General Meeting',
-                    'General Meeting',
-                    'General Meeting',
-                    'General Meeting',
-                    'General Meeting'
-                ]
-            },
-            'innovation-challenge': {
-                title: 'Wine Outreach',
-                date: '',
-                images: [
-                    'images/events/iwed/1.jpg',
-                    'images/events/iwed/2.jpg',
-                    'images/events/iwed/3.jpg',
-                    'images/events/iwed/4.jpg',
-                    'images/events/iwed/5.jpg'
-                ],
-                captions: [
-                    'Wine Outreach',
-                    'Wine Outreach',
-                    'Wine Outreach',
-                    'Wine Outreach',
-                    'Wine Outreach'
-                ]
-            },
-            'technical-bootcamp': {
-                title: 'IWED Microcontrollers Training',
-                date: '',
-                images: [
-                    'images/events/iwed_con/1.jpg',
-                    'images/events/iwed_con/2.jpg',
-                    'images/events/iwed_con/3.jpg',
-                    'images/events/iwed_con/4.jpg',
-                    'images/events/iwed_con/5.jpg'
-                ],
-                captions: [
-                    'Python programming fundamentals',
-                    'Data analysis techniques and tools',
-                    'Project management software training',
-                    'Hands-on practice sessions',
-                    'Skills assessment and feedback'
-                ]
-            },
-             'shecan': {
-                title: 'She Can',
-                date: '',
-                images: [
-                    'images/events/shecan/1.jpg',
-                    'images/events/shecan/2.jpg',
-                    'images/events/shecan/3.jpg',
-                    'images/events/shecan/4.jpg',
-                    'images/events/shecan/5.jpg'
-                ],
-                captions: [
-                    'She Can',
-                    'She Can',
-                    'She Can',
-                    'She Can',
-                    'She Can'
-                ]
-            },
-            'wine-games': {
-                title: 'WinE Games 2024',
-                date: '',
-                images: [
-                    '/placeholder.svg?height=500&width=800&text=Opening+Ceremony',
-                    '/placeholder.svg?height=500&width=800&text=Volleyball+Tournament',
-                    '/placeholder.svg?height=500&width=800&text=Basketball+Competition',
-                    '/placeholder.svg?height=500&width=800&text=Track+Events',
-                    '/placeholder.svg?height=500&width=800&text=Victory+Celebration'
-                ],
-                captions: [
-                    'Opening ceremony and team parade',
-                    'Exciting volleyball tournament matches',
-                    'Competitive basketball games',
-                    'Track and field events',
-                    'Victory celebration and medal ceremony'
-                ]
-            }
-        };
+  function openModal(eventId) {
+    const modal = document.getElementById('eventModal');
+    const data = eventData[eventId];
+    if (!data) return;
 
-        function openModal(eventId) {
-            const modal = document.getElementById('eventModal');
-            const data = eventData[eventId];
-            
-            if (data) {
-                document.getElementById('modalTitle').textContent = data.title;
-                document.getElementById('modalDate').textContent = data.date;
-                
-                // Update images and captions
-                for (let i = 1; i <= 5; i++) {
-                    document.getElementById(`slide${i}`).src = data.images[i-1];
-                    document.getElementById(`caption${i}`).textContent = data.captions[i-1];
-                }
-                
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                slideIndex = 1;
-                showSlide(slideIndex);
-            }
-        }
+    // Titles
+    document.getElementById('modalTitle').textContent = data.title || '';
+    document.getElementById('modalDate').textContent = data.date || '';
 
-        function closeModal() {
-            const modal = document.getElementById('eventModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+    // Containers
+    const slideshow = document.querySelector('.slideshow-container');
+    const dotsWrap = document.querySelector('.dots-container');
 
-        function changeSlide(n) {
-            showSlide(slideIndex += n);
-        }
+    if (!slideshow || !dotsWrap) return;
 
-        function currentSlide(n) {
-            showSlide(slideIndex = n);
-        }
+    // Ensure captions array matches images length
+    const total = (data.images || []).length;
+    const captions = Array.isArray(data.captions) ? data.captions.slice(0) : [];
+    while (captions.length < total) captions.push('');
 
-        function showSlide(n) {
-            const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.dot');
-            
-            if (n > slides.length) { slideIndex = 1; }
-            if (n < 1) { slideIndex = slides.length; }
-            
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            slides[slideIndex - 1].classList.add('active');
-            dots[slideIndex - 1].classList.add('active');
-        }
+    // Remove any existing slides
+    slideshow.querySelectorAll('.slide').forEach(el => el.remove());
 
-        // Close modal when clicking outside
-        window.addEventListener('click', function(event) {
-            const modal = document.getElementById('eventModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        });
+    // Reference nodes for nav buttons (keep existing)
+    const prevBtn = slideshow.querySelector('.prev');
+    const nextBtn = slideshow.querySelector('.next');
 
-        // Keyboard navigation
-        document.addEventListener('keydown', function(event) {
-            const modal = document.getElementById('eventModal');
-            if (modal.classList.contains('active')) {
-                if (event.key === 'Escape') {
-                    closeModal();
-                } else if (event.key === 'ArrowLeft') {
-                    changeSlide(-1);
-                } else if (event.key === 'ArrowRight') {
-                    changeSlide(1);
-                }
-            }
-        });
+    // Create slides and insert before the nav buttons (if present)
+    const frag = document.createDocumentFragment();
+    data.images.forEach((src, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'slide' + (i === 0 ? ' active' : '');
 
-        // Fix for viewport units on mobile
-        function setVH() {
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        }
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = `${data.title || 'Event'} ${i + 1}`;
 
-        setVH();
-        window.addEventListener('resize', setVH);
-    </script>
+      const cap = document.createElement('div');
+      cap.className = 'slide-caption';
+      cap.textContent = captions[i] || '';
+
+      slide.appendChild(img);
+      slide.appendChild(cap);
+      frag.appendChild(slide);
+    });
+
+    // If we have a prev button, insert slides before it; otherwise append
+    if (prevBtn) {
+      slideshow.insertBefore(frag, prevBtn);
+    } else {
+      slideshow.appendChild(frag);
+    }
+
+    // Build dots
+    dotsWrap.innerHTML = '';
+    data.images.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => currentSlide(i + 1));
+      dotsWrap.appendChild(dot);
+    });
+
+    // Show modal and reset index
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    slideIndex = 1;
+    showSlide(slideIndex);
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('eventModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  function changeSlide(n) {
+    showSlide(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlide(slideIndex = n);
+  }
+
+  function showSlide(n) {
+    const slides = document.querySelectorAll('.slideshow-container .slide');
+    const dots = document.querySelectorAll('.dots-container .dot');
+    const total = slides.length;
+    if (!total) return;
+
+    if (n > total) slideIndex = 1;
+    if (n < 1) slideIndex = total;
+
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+
+    slides[slideIndex - 1].classList.add('active');
+    dots[slideIndex - 1].classList.add('active');
+  }
+
+  // Close modal when clicking outside content
+  window.addEventListener('click', function (event) {
+    const modal = document.getElementById('eventModal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function (event) {
+    const modal = document.getElementById('eventModal');
+    if (modal.classList.contains('active')) {
+      if (event.key === 'Escape') {
+        closeModal();
+      } else if (event.key === 'ArrowLeft') {
+        changeSlide(-1);
+      } else if (event.key === 'ArrowRight') {
+        changeSlide(1);
+      }
+    }
+  });
+
+  // Fix for viewport units on mobile
+  function setVH() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+
+  setVH();
+  window.addEventListener('resize', setVH);
+</script>
+
 </body>
 </html>
