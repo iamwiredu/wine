@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Education - Women in Engineering (WinE) KNUST</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+:root {
+    --primary-color-1: #a50121;
+    --primary-color-2: #cc1c4d;
+    --gradient: linear-gradient(135deg, var(--primary-color-1), var(--primary-color-2));
+    --light-pink: #ffeef2;
+    --soft-gray: #f8f9fa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #fff;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.header.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    max-width: 100px;
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: var(--primary-color-2);
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: var(--gradient);
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+    width: 100%;
+}
+
+.mobile-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.mobile-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    margin: 3px 0;
+}
+
+#close-menu {
+    font-size: 2rem;
+    color: var(--primary-color-2);
+    cursor: pointer;
+    display: none;
+}
+
+.hero {
+    height: 60vh;
+    background-image: url('images/cover_health.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+    z-index: 1;
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease 0.3s forwards;
+    opacity: 0;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    animation: fadeInUp 1s ease 0.6s forwards;
+    opacity: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.health-intro {
+    padding: 4rem 0;
+    background: var(--soft-gray);
+    text-align: center;
+}
+
+.intro-text {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: #555;
+    padding: 0 1rem;
+}
+
+.health-topics {
+    display: grid;
+    gap: 3rem;
+    padding: 4rem 0;
+}
+
+.topic-section {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin: 0 auto;
+    width: 100%;
+}
+
+.topic-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.topic-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.topic-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.topic-title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.content-section {
+    background: var(--light-pink);
+    padding: 1.5rem;
+    border-left: 4px solid var(--primary-color-2);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.content-section h3 {
+    color: var(--primary-color-1);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.content-section ul {
+    padding-left: 1.5rem;
+}
+
+.content-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.symptom-grid,
+.risk-factors,
+.tips-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: 1rem;
+}
+
+.tip-card,
+.risk-factor,
+.symptom-item {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.tip-card:hover,
+.risk-factor:hover,
+.symptom-item:hover {
+    transform: translateY(-2px);
+}
+
+.symptom-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.symptom-item i {
+    color: var(--primary-color-2);
+}
+
+.tip-card h5 {
+    color: var(--primary-color-1);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.prevention-tips,
+.emergency-contact {
+    margin-top: 2rem;
+}
+
+.prevention-tips h4,
+.emergency-contact h3 {
+    color: var(--primary-color-1);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.resources {
+    margin-top: 2rem;
+}
+
+.resources h4 {
+    color: var(--primary-color-1);
+    margin-bottom: 1rem;
+}
+
+.resources a {
+    display: block;
+    color: var(--primary-color-2);
+    margin: 0.5rem 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.resources a:hover {
+    color: var(--primary-color-1);
+    text-decoration: underline;
+}
+
+.emergency-contact {
+    background: var(--light-pink);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.contact-info {
+    font-weight: bold;
+    color: var(--primary-color-1);
+    margin-bottom: 0.5rem;
+}
+
+.contact-info i {
+    margin-right: 0.5rem;
+}
+
+.footer {
+    background: #2c3e50;
+    color: white;
+    padding: 3rem 1rem 1rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-section h3 {
+   color: #a50121;
+    margin-bottom: 1rem;
+}
+
+.footer-section a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: white;
+}
+
+.social-links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #a50121;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #34495e;
+    color: #95a5a6;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 1024px) {
+    .mobile-toggle {
+        display: flex;
+    }
+    
+    #close-menu {
+        display: block;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .symptom-grid,
+    .risk-factors,
+    .tips-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .hero {
+        height: 50vh;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .health-intro {
+        padding: 3rem 0;
+    }
+    
+    .intro-text {
+        font-size: 1rem;
+    }
+    
+    .health-topics {
+        gap: 2rem;
+        padding: 3rem 0;
+    }
+    
+    .topic-section {
+        padding: 1.5rem;
+        margin: 0;
+    }
+    
+    .topic-title {
+        font-size: 1.5rem;
+    }
+    
+    .topic-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .topic-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .content-section {
+        padding: 1rem;
+    }
+    
+    .content-section h3 {
+        font-size: 1.1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+    
+    .symptom-grid,
+    .risk-factors,
+    .tips-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .tip-card,
+    .risk-factor,
+    .symptom-item {
+        padding: 0.75rem;
+    }
+    
+    .prevention-tips h4,
+    .emergency-contact h3 {
+        font-size: 1.1rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+     
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0.75rem;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .topic-section {
+        padding: 1rem;
+        border-radius: 15px;
+    }
+    
+    .topic-title {
+        font-size: 1.3rem;
+    }
+    
+    .topic-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .topic-icon i {
+        font-size: 1.2rem;
+    }
+    
+    .content-section {
+        padding: 0.75rem;
+    }
+    
+    .content-section h3 {
+        font-size: 1rem;
+    }
+    
+    .tip-card h5 {
+        font-size: 1rem;
+    }
+    
+    .tip-card p,
+    .content-section p,
+    .content-section li {
+        font-size: 0.9rem;
+    }
+    
+    .emergency-contact {
+        padding: 1rem;
+    }
+    
+    .contact-info {
+        font-size: 0.9rem;
+    }
+}
+
+/* Ensure proper spacing and alignment */
+.health-topics .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Fix any potential horizontal scroll issues */
+.topic-content {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.content-section,
+.prevention-tips,
+.resources,
+.emergency-contact {
+    width: 100%;
+    box-sizing: border-box;
+}
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="WinE Logo">
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="close-btn"><i class="fas fa-times" id="close-menu"></i></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="wine_library.html">WinE Library</a></li>
+                <li><a href="events.html">Main Events</a></li>
+                <li><a href="ohub.html">Opportunity Hub</a></li>
+                <li><a href="lifestyle.html">Lifestyle</a></li>
+                <li><a href="health_education.html" class="active">Health Education</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Health Education</h1>
+            <p>Empowering women engineers with essential health knowledge for holistic well-being</p>
+        </div>
+    </section>
+
+    <section class="health-intro">
+        <div class="container">
+            <div class="intro-text">
+                <p>Holistic empowerment and growth of succeeding generations of female engineers cannot be complete without creating awareness of health issues that affect them. Here we discuss four major health concerns, providing information on prevention, detection, and treatment to support your health journey.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="health-topics">
+            <!-- Breast Cancer Section -->
+            <div class="topic-section">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-ribbon"></i>
+                    </div>
+                    <h2 class="topic-title">Breast Cancer Awareness</h2>
+                </div>
+                
+                <div class="topic-content">
+                    <div class="content-section">
+                        <h3><i class="fas fa-info-circle"></i>What is Breast Cancer?</h3>
+                        <p>Breast cancer is the most common cancer globally, where abnormal breast cells grow out of control and form tumors. These cancerous cells begin in the milk ducts and/or milk-producing lobules of the breast. About 2.3 million new cases are recorded worldwide every year.</p>
+                        <p>Females have more breast tissues than males, making them at much higher risk, though 0.5% - 1% of breast cancer occurs in men.</p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3><i class="fas fa-exclamation-triangle"></i>Risk Factors</h3>
+                        <div class="risk-factors">
+                            <div class="risk-factor">Tobacco & Alcohol Use</div>
+                            <div class="risk-factor">Increasing Age</div>
+                            <div class="risk-factor">Obesity</div>
+                            <div class="risk-factor">Early Periods (before 12)</div>
+                            <div class="risk-factor">Late Menopause (after 55)</div>
+                            <div class="risk-factor">Family History</div>
+                            <div class="risk-factor">Radiation Exposure</div>
+                            <div class="risk-factor">Hormone Therapy</div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3><i class="fas fa-search"></i>Signs & Symptoms</h3>
+                        <div class="symptom-grid">
+                            <div class="symptom-item">
+                                <i class="fas fa-circle-dot"></i>
+                                <span>Breast lumps or thickening</span>
+                            </div>
+                            <div class="symptom-item">
+                                <i class="fas fa-arrows-alt"></i>
+                                <span>Change in breast size/shape</span>
+                            </div>
+                            <div class="symptom-item">
+                                <i class="fas fa-eye"></i>
+                                <span>Skin dimpling or redness</span>
+                            </div>
+                            <div class="symptom-item">
+                                <i class="fas fa-tint"></i>
+                                <span>Nipple discharge</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="prevention-tips">
+                        <h4>Prevention Strategies</h4>
+                        <div class="tips-grid">
+                            <div class="tip-card">
+                                <h5>Stay Active</h5>
+                                <p>Exercise for at least 30 minutes a day, 4-5 times weekly</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Limit Alcohol</h5>
+                                <p>Moderate intake to no more than one drink per day</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Maintain Healthy Weight</h5>
+                                <p>Keep a balanced diet and healthy BMI</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Regular Screening</h5>
+                                <p>Discuss mammogram frequency with healthcare provider</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resources">
+                        <h4>Learn More</h4>
+                        <a href="https://www.mayoclinic.org/diseases-conditions/breast-cancer/symptoms-causes/syc-20352470" target="_blank">Mayo Clinic - Breast Cancer</a>
+                        <a href="https://www.who.int/news-room/fact-sheets/detail/breast-cancer" target="_blank">WHO - Breast Cancer Facts</a>
+                        <a href="https://my.clevelandclinic.org/health/diseases/3986-breast-cancer" target="_blank">Cleveland Clinic - Breast Cancer</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cervical Cancer Section -->
+            <div class="topic-section">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <h2 class="topic-title">Cervical Cancer Awareness</h2>
+                </div>
+                
+                <div class="topic-content">
+                    <div class="content-section">
+                        <h3><i class="fas fa-info-circle"></i>What is Cervical Cancer?</h3>
+                        <p>Cervical cancer is the fourth most common cancer in women globally. It involves the growth of abnormal cells lining the cervix. The average age at diagnosis is 50 years, and it can be difficult to detect in early stages due to minimal symptoms.</p>
+                        <p>Most cases are caused by the sexually transmitted human papillomavirus (HPV), particularly HPV-16 and HPV-18 strains.</p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3><i class="fas fa-exclamation-triangle"></i>Risk Factors</h3>
+                        <div class="risk-factors">
+                            <div class="risk-factor">Weakened Immunity</div>
+                            <div class="risk-factor">Smoking</div>
+                            <div class="risk-factor">Obesity</div>
+                            <div class="risk-factor">Hormonal Contraceptives</div>
+                            <div class="risk-factor">Family History</div>
+                            <div class="risk-factor">Early Pregnancy (before 17)</div>
+                            <div class="risk-factor">Multiple Sexual Partners</div>
+                            <div class="risk-factor">Other STIs</div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3><i class="fas fa-search"></i>Signs & Symptoms</h3>
+                        <div class="symptom-grid">
+                            <div class="symptom-item">
+                                <i class="fas fa-tint"></i>
+                                <span>Unusual bleeding between periods</span>
+                            </div>
+                            <div class="symptom-item">
+                                <i class="fas fa-exclamation"></i>
+                                <span>Abnormal vaginal discharge</span>
+                            </div>
+                            <div class="symptom-item">
+                                <i class="fas fa-heartbeat"></i>
+                                <span>Pelvic pain</span>
+                            </div>
+                            <div class="symptom-item">
+                                <i class="fas fa-toilet"></i>
+                                <span>Frequent urination or pain</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="prevention-tips">
+                        <h4>Prevention Strategies</h4>
+                        <div class="tips-grid">
+                            <div class="tip-card">
+                                <h5>HPV Vaccination</h5>
+                                <p>Most effective prevention, available for ages 9-14</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Regular Screening</h5>
+                                <p>Pap smear or hrHPV test from age 30 (25 for HIV+)</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Safe Sex</h5>
+                                <p>Use condoms and limit sexual partners</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Healthy Lifestyle</h5>
+                                <p>Quit smoking and maintain good nutrition</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resources">
+                        <h4>Learn More</h4>
+                        <a href="https://www.healthline.com/health/cervical-cancer" target="_blank">Healthline - Cervical Cancer</a>
+                        <a href="https://www.cancer.org.au/cancer-information/types-of-cancer/cervical-cancer" target="_blank">Cancer Council - Cervical Cancer</a>
+                        <a href="https://www.who.int/news-room/fact-sheets/detail/cervical-cancer" target="_blank">WHO - Cervical Cancer Facts</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menstrual Health Section -->
+            <div class="topic-section">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h2 class="topic-title">Menstrual Health & Hygiene</h2>
+                </div>
+                
+                <div class="topic-content">
+                    <div class="content-section">
+                        <h3><i class="fas fa-info-circle"></i>Understanding the Menstrual Cycle</h3>
+                        <p>The menstrual cycle is a monthly series of changes preparing the body for pregnancy, spanning 21-35 days. It includes four phases: menstruation, follicular phase, ovulation, and luteal phase.</p>
+                        <ul>
+                            <li>Menstruation: Shedding of uterine lining (3-8 days)</li>
+                            <li>Follicular Phase: Estrogen rises, egg matures (first half of cycle)</li>
+                            <li>Ovulation: Egg release around day 14</li>
+                            <li>Luteal Phase: Progesterone prepares for potential pregnancy</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-section">
+                        <h3><i class="fas fa-exclamation-triangle"></i>When to Consult a Healthcare Professional</h3>
+                        <ul>
+                            <li>Cycles shorter than 21 days or longer than 35 days</li>
+                            <li>No period for 90 days</li>
+                            <li>Unusually heavy or light flow</li>
+                            <li>Bleeding for more than 7 days or spotting between periods</li>
+                            <li>Severe pain, cramping, or PMS symptoms</li>
+                            <li>Feeling sick after using menstrual products</li>
+                        </ul>
+                    </div>
+
+                    <div class="prevention-tips">
+                        <h4>Menstrual Hygiene Practices</h4>
+                        <div class="tips-grid">
+                            <div class="tip-card">
+                                <h5>Change Products Regularly</h5>
+                                <p>Change pads/tampons every 4-6 hours to prevent infections</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Use Breathable Underwear</h5>
+                                <p>Cotton underwear prevents moisture and bacterial growth</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Practice Good Hygiene</h5>
+                                <p>Clean genital area with water only, wipe front to back</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Stay Hydrated</h5>
+                                <p>Drink plenty of water to cleanse the urinary tract</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="prevention-tips">
+                        <h4>Healthy Habits for Menstrual Well-Being</h4>
+                        <div class="tips-grid">
+                            <div class="tip-card">
+                                <h5>Nutritious Eating</h5>
+                                <p>Iron-rich foods like leafy greens and lean meats</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Regular Exercise</h5>
+                                <p>Reduces stress and helps regulate cycles</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Quality Sleep</h5>
+                                <p>Consistent sleep pattern improves menstrual health</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Track Your Cycle</h5>
+                                <p>Use apps like Flo or manual tracking methods</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mental Health Section -->
+            <div class="topic-section">
+                <div class="topic-header">
+                    <div class="topic-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h2 class="topic-title">Mental Health Awareness</h2>
+                </div>
+
+                <div class="topic-content">
+                    <div class="content-section">
+                        <h3><i class="fas fa-info-circle"></i>What is Mental Health?</h3>
+                        <p>According to the WHO, mental health is a state of mental well-being that enables people to cope with life, realize abilities, learn, work, and contribute to their community. It includes emotional, psychological, and social well-being.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3><i class="fas fa-list"></i>Types of Disorders</h3>
+                        <ul>
+                            <li><strong>Anxiety Disorders:</strong> GAD, PTSD, OCD, phobias</li>
+                            <li><strong>Mood Disorders:</strong> Depression, Bipolar Disorder</li>
+                            <li><strong>Schizophrenia Spectrum Disorders</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3><i class="fas fa-exclamation-triangle"></i>Risk Factors</h3>
+                        <ul>
+                            <li>Socioeconomic stress</li>
+                            <li>Childhood trauma</li>
+                            <li>Chronic illnesses or genetics</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3><i class="fas fa-eye"></i>Signs & Symptoms</h3>
+                        <ul>
+                            <li>Withdrawal from others</li>
+                            <li>Loss of interest in activities</li>
+                            <li>Changes in sleep or appetite</li>
+                            <li>Low energy, hopelessness</li>
+                            <li>Thoughts of self-harm or suicide</li>
+                            <li>Delusions or hallucinations</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="prevention-tips">
+                        <h4>Self-Care and Mental Wellness</h4>
+                        <div class="tips-grid">
+                            <div class="tip-card">
+                                <h5>Exercise Regularly</h5>
+                                <p>45 minutes, 3-5 times weekly to boost mood</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Eat Healthy & Hydrate</h5>
+                                <p>Nutrition impacts both body and mind</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Sleep Well</h5>
+                                <p>Set consistent sleep-wake cycles</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Social Support</h5>
+                                <p>Stay connected with friends and family</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Relaxation</h5>
+                                <p>Practice journaling, meditation, or nature walks</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>Set Goals</h5>
+                                <p>Organize your priorities to manage stress</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resources">
+                        <h4>Get Help & Learn More</h4>
+                        <a href="https://www.medicalnewstoday.com/articles/154543" target="_blank">Medical News Today - Mental Health</a>
+                        <a href="https://www.nhs.uk/mental-health/" target="_blank">NHS Mental Health</a>
+                        <a href="https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health" target="_blank">NIMH - Mental Health</a>
+                    </div>
+                    
+                    <div class="emergency-contact">
+                        <h3>Need Support Now?</h3>
+                        <p class="contact-info"><i class="fas fa-phone"></i> KNUST Counselling Centre: 0593510668 / 0594399772</p>
+                        <p>Your mental well-being matters. You are not alone.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Kwame Nkrumah University of Science and Technology</p>
+                    <p>Kumasi, Ghana</p>
+                    <p>Email: wine@knust.edu.gh</p>
+             <div class="social-links">
+                      <a href="https://www.tiktok.com/@wine_knust?_t=ZM-8yg85rKXNSA&_r=1"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://x.com/Knust_WinE"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/wine_knust_/?hl=en"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/wine-knust/about/?viewAsMember=true"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="events.html">Events</a></p>
+                    <p><a href="ohub.html">Opportunities</a></p>
+                    <p><a href="blogs.html">Blogs</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Affiliations</h3>
+                    <p>Women in Engineering Ghana</p>
+                    <p>Ghana Institution of Engineers (GhIE)</p>
+                    <p>Ghana Engineering Students Association (GESA)</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Women in Engineering (WinE) KNUST. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const closeMenu = document.getElementById('close-menu');
+
+        mobileToggle.addEventListener('click', function () {
+            navMenu.classList.toggle('active');
+        });
+
+        closeMenu.addEventListener('click', function () {
+            navMenu.classList.remove('active');
+        });
+
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            header.classList.toggle('scrolled', window.scrollY > 100);
+        });
+    </script>
+</body>
+</html>

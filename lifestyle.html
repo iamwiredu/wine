@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifestyle - Women in Engineering (WinE) KNUST</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color-1: #a50121;
+            --primary-color-2: #cc1c4d;
+            --gradient: linear-gradient(135deg, var(--primary-color-1), var(--primary-color-2));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            overflow-x: hidden;
+        }
+ .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            max-width: 120px;
+            height: auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+            transition: transform 0.3s ease;
+        }
+
+                .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-color-2);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .nav-menu .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+        }
+
+        #close-menu {
+            font-size: 2rem;
+            color: var(--primary-color-2);
+            cursor: pointer;
+            display: none;
+             z-index: 1001; /* Ensure it's above nav-menu */
+    padding: 0.5rem;
+
+        }
+
+        .main-content {
+            margin-top: 100px;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .lifestyle-section {
+            background: white;
+            border-radius: 25px;
+            padding: 3.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lifestyle-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient);
+        }
+
+        .lifestyle-section:hover {
+            transform: translateY(-8px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2rem;
+            box-shadow: 0 10px 25px rgba(165, 1, 33, 0.3);
+        }
+
+        .section-icon i {
+            font-size: 2.2rem;
+            color: white;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .section-intro {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .subsection {
+            margin-bottom: 3rem;
+        }
+
+        .subsection h3 {
+            font-size: 2rem;
+            color: var(--primary-color-1);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .subsection h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 25px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        .content-list {
+            margin-left: 2rem;
+            list-style: none;
+        }
+
+        .content-list li {
+            margin-bottom: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .content-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color-2);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            border-left: 6px solid var(--primary-color-2);
+        }
+
+        .highlight-title {
+            font-size: 1.8rem;
+            color: var(--primary-color-1);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color-2);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-icon i {
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .benefit-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .benefit-text {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .activity-showcase {
+            background: var(--gradient);
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+            text-align: center;
+            margin: 2.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-showcase::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .activity-showcase h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .activity-showcase p {
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+            opacity: 0.9;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-image {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            position: relative;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #a50121;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #a50121;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        /* Overlay for mobile menu */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 1024px) {
+            .mobile-toggle {
+                display: flex;
+            }
+
+    .nav-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                padding-top: 3rem;
+                transition: left 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+            }
+
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .main-content {
+                padding: 2rem 0;
+            }
+
+            .page-header {
+                margin-bottom: 2rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .page-subtitle {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+
+            .lifestyle-section {
+                padding: 2rem 1.5rem;
+                margin-bottom: 2rem;
+                border-radius: 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .section-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+                width: 60px;
+                height: 60px;
+            }
+
+            .section-icon i {
+                font-size: 1.8rem;
+            }
+
+            .section-intro {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+
+            .subsection h3 {
+                font-size: 1.6rem;
+                padding-left: 1.5rem;
+            }
+
+            .subsection h3::before {
+                height: 20px;
+            }
+
+            .content-list {
+                margin-left: 1rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .benefit-card {
+                padding: 1.5rem;
+            }
+
+            .highlight-box {
+                padding: 2rem 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .highlight-title {
+                font-size: 1.5rem;
+            }
+
+            .activity-showcase {
+                padding: 2rem 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .activity-showcase h3 {
+                font-size: 1.8rem;
+            }
+
+            .activity-showcase p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo img {
+                max-width: 100px;
+            }
+
+            .container {
+                padding: 0 0.75rem;
+            }
+
+            .main-content {
+                margin-top: 80px;
+                padding: 1.5rem 0;
+            }
+
+            .page-title {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .page-subtitle {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+            }
+
+            .lifestyle-section {
+                padding: 1.5rem 1rem;
+                margin-bottom: 1.5rem;
+                border-radius: 15px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+                line-height: 1.3;
+            }
+
+            .section-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .section-icon i {
+                font-size: 1.5rem;
+            }
+
+            .section-intro {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .subsection h3 {
+                font-size: 1.4rem;
+                padding-left: 1rem;
+            }
+
+            .subsection h3::before {
+                width: 4px;
+                height: 16px;
+            }
+
+            .content-list {
+                margin-left: 0.5rem;
+            }
+
+            .content-list li {
+                font-size: 0.95rem;
+                padding-left: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .benefit-card {
+                padding: 1.25rem;
+            }
+
+            .benefit-title {
+                font-size: 1rem;
+            }
+
+            .benefit-text {
+                font-size: 0.9rem;
+            }
+
+            .highlight-box {
+                padding: 1.5rem 1rem;
+                margin: 1.5rem 0;
+                border-radius: 15px;
+            }
+
+            .highlight-title {
+                font-size: 1.3rem;
+            }
+
+            .activity-showcase {
+                padding: 1.5rem 1rem;
+                margin: 1.5rem 0;
+                border-radius: 15px;
+            }
+
+            .activity-showcase h3 {
+                font-size: 1.5rem;
+            }
+
+            .activity-showcase p {
+                font-size: 0.95rem;
+            }
+
+            .image-placeholder {
+                height: 150px;
+                margin: 1rem 0;
+            }
+
+            .image-placeholder i {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                width: 100%;
+                padding: 4rem 1.5rem 2rem;
+            }
+
+            .mobile-toggle span {
+                width: 22px;
+                height: 2px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .lifestyle-section {
+                padding: 1rem 0.75rem;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .highlight-box {
+                padding: 1.25rem 0.75rem;
+            }
+
+            .activity-showcase {
+                padding: 1.25rem 0.75rem;
+            }
+        }
+        .mobile-close {
+
+    z-index: 1001;
+    display: none;
+}
+
+     .nav-menu li {
+                display: flex;
+                justify-content: center;
+            }
+/* ===== Aerobics Image Slider ===== */
+.aero-slider {
+  position: relative;
+  margin-top: 1.5rem;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+  background: #000; /* prevents white flash while loading */
+}
+
+.aero-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.aero-track {
+  list-style: none;
+  display: flex;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  transition: transform 500ms cubic-bezier(.2,.7,.2,1);
+  will-change: transform;
+}
+
+.aero-slide {
+  position: relative;
+  min-width: 100%;
+  height: clamp(220px, 42vw, 520px);
+  user-select: none;
+}
+
+.aero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Gradient edges for nicer look */
+.aero-slider::before,
+.aero-slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  pointer-events: none;
+  z-index: 2;
+}
+.aero-slider::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,.25), rgba(0,0,0,0));
+}
+.aero-slider::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(0,0,0,.25), rgba(0,0,0,0));
+}
+
+/* Arrows */
+.aero-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(165,1,33,0.35);
+  transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+  opacity: .95;
+}
+.aero-nav:hover { transform: translateY(-50%) scale(1.05); }
+.aero-prev { left: 10px; }
+.aero-next { right: 10px; }
+
+/* Dots */
+.aero-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+.aero-dots button {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255,255,255,.55);
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+.aero-dots button[aria-selected="true"] {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+/* Pause on hover cue */
+.aero-slider:hover .aero-nav { opacity: 1; }
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .aero-nav { width: 40px; height: 40px; }
+  .aero-slider::before, .aero-slider::after { width: 80px; }
+}
+
+    </style>
+</head>
+
+<body>
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="WinE Logo">
+            </div>
+        
+            <ul class="nav-menu" id="nav-menu">
+
+                    <li class="mobile-close" id="close-menu" style="justify-content: center;"><i class="fas fa-times"></i></li>
+                <li><a href="index.html">Home</a></li>
+            
+                <li><a href="wine_library.html">WinE Library</a></li>
+                <li><a href="events.html">Main Events</a></li>
+                <li><a href="ohub.html">Opportunity Hub</a></li>
+                <li><a class="active" href="lifestyle.html">Lifestyle</a></li>
+                <li><a href="health_education.html">Health Education</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+  
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title" style="margin-top: 50px;">Lifestyle</h1>
+                <p class="page-subtitle">Balancing academic excellence with personal growth, professional development,
+                    and well-being</p>
+            </div>
+
+            <!-- Professional Branding & LinkedIn Section -->
+            <section class="lifestyle-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h2 class="section-title">Professional Branding & LinkedIn Optimization</h2>
+                </div>
+                <p class="section-intro">Build your digital presence and create powerful first impressions through
+                    strategic LinkedIn optimization workshops.</p>
+
+                <div class="subsection">
+                    <h3>Key Areas for LinkedIn Optimization</h3>
+                    <ul class="content-list">
+                        <li><strong>Professional Profile Picture:</strong> Use a clear, well-lit, and professional
+                            headshot that represents you authentically</li>
+                        <li><strong>Compelling Headlines:</strong> Instead of "Student," use headlines like "Aspiring
+                            Mechanical Engineer | Passionate about Robotics | Seeking Internship Opportunities"</li>
+                        <li><strong>Concise Summary:</strong> Write a story that talks about your career interests and
+                            goals in an engaging way</li>
+                        <li><strong>Academic Experience:</strong> Treat your projects and academic experiences like
+                            professional jobs with detailed descriptions</li>
+                        <li><strong>Action-Oriented Descriptions:</strong> Use strong action verbs to describe your
+                            responsibilities and achievements</li>
+                        <li><strong>Skills & Endorsements:</strong> List relevant technical and soft skills, and
+                            actively seek endorsements from connections</li>
+                        <li><strong>Recommendations:</strong> Request recommendations from professors, project
+                            supervisors, or anyone who can speak to your abilities</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4 class="highlight-title">Why LinkedIn Optimization Matters</h4>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="benefit-title">First Impressions</div>
+                            <div class="benefit-text">Your online presence often serves as your first impression,
+                                especially crucial for students with limited formal work experience.</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div class="benefit-title">Enhanced Visibility</div>
+                            <div class="benefit-text">Optimized profiles with relevant keywords rank higher in searches,
+                                making you more discoverable to recruiters.</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="benefit-title">Network Expansion</div>
+                            <div class="benefit-text">Engaging profiles encourage connections, expanding your network
+                                and creating valuable opportunities.</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div class="benefit-title">Recruiter Attraction</div>
+                            <div class="benefit-text">Recruiters actively search LinkedIn for candidates. An optimized
+                                profile increases your chances of being contacted.</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="benefit-title">Credibility Building</div>
+                            <div class="benefit-text">Detailed profiles with recommendations and endorsements build
+                                trust and showcase your expertise.</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="benefit-title">Stand Out</div>
+                            <div class="benefit-text">Personal branding helps you differentiate yourself and become
+                                memorable in a crowded professional landscape.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Time Management Section -->
+            <section class="lifestyle-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h2 class="section-title">Time Management</h2>
+                </div>
+                <p class="section-intro">Master the art of balancing academic excellence with personal well-being
+                    through effective time management strategies.</p>
+
+                <div class="subsection">
+                    <h3>Why Time Management is Essential for Students</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="benefit-title">Academic Excellence</div>
+                            <div class="benefit-text">Allocate dedicated study periods, complete assignments on time,
+                                and prepare for exams without last-minute cramming.</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-spa"></i>
+                            </div>
+                            <div class="benefit-title">Stress Reduction</div>
+                            <div class="benefit-text">Planning ahead and breaking tasks into smaller steps makes
+                                workloads feel manageable, reducing stress and anxiety.</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="benefit-title">Increased Productivity</div>
+                            <div class="benefit-text">Prioritizing tasks, setting goals, and minimizing distractions
+                                helps you accomplish more in less time.</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div class="benefit-title">Life Balance</div>
+                            <div class="benefit-text">Balance studies with social activities, hobbies, rest, and
+                                personal commitments for a healthier student life.</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="benefit-title">Enhanced Focus</div>
+                            <div class="benefit-text">Scheduling specific times for tasks helps you focus more deeply
+                                without feeling rushed or needing to multitask.</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="benefit-title">Goal Achievement</div>
+                            <div class="benefit-text">Break down larger goals into manageable steps, making it easier to
+                                achieve both short-term and long-term objectives.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Keep Fit/Aerobics Section -->
+            <section class="lifestyle-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h2 class="section-title">Keep Fit / Aerobics</h2>
+                </div>
+                <p class="section-intro">Physical wellness sessions designed to energize your body and mind while
+                    building a supportive community.</p>
+
+                <div class="activity-showcase">
+                    <h3>WinE Keep Fit & Aerobics Sessions</h3>
+                    <p>Experience the vibrant energy of our community fitness programs! Looking for a fun way to stay
+                        active at KNUST? Join the excitement of our Keep Fit/Aerobics WinE Events.</p>
+
+                   
+                </div>
+                <div class="aero-slider" id="aero-slider">
+  <button class="aero-nav aero-prev" aria-label="Previous slide">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+
+  <div class="aero-viewport">
+    <ul class="aero-track">
+      <!-- Repeat .aero-slide for each image -->
+      <li class="aero-slide" aria-hidden="false">
+        <img src="images/aeb/1.jpg" alt="WinE aerobics—warm up session">
+      </li>
+      <li class="aero-slide" aria-hidden="true">
+        <img src="images/aeb/2.jpg" alt="Group cardio routine">
+      </li>
+      <li class="aero-slide" aria-hidden="true">
+        <img src="images/aeb/3.jpg" alt="Stretching and cool down">
+      </li>
+      
+      <li class="aero-slide" aria-hidden="true">
+        <img src="images/aeb/4.jpg" alt="Stretching and cool down">
+      </li>
+      
+      <li class="aero-slide" aria-hidden="true">
+        <img src="images/aeb/5.jpg" alt="Stretching and cool down">
+      </li>
+      
+      <li class="aero-slide" aria-hidden="true">
+        <img src="images/aeb/6.jpg" alt="Stretching and cool down">
+      </li>
+      
+      <li class="aero-slide" aria-hidden="true">
+        <img src="images/aeb/7.jpg" alt="Stretching and cool down">
+      </li>
+    </ul>
+  </div>
+
+  <button class="aero-nav aero-next" aria-label="Next slide">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+
+  <div class="aero-dots" role="tablist" aria-label="Aerobics gallery"></div>
+</div>
+
+            </section>
+
+            <!-- WinE Games Section -->
+            <section class="lifestyle-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h2 class="section-title">WinE Games</h2>
+                </div>
+                <p class="section-intro">Friendly sports competitions designed to build team spirit,
+                    foster connections,
+                    and create lasting memories within our WinE community.</p>
+
+                <div class="activity-showcase">
+                    <h3>Cheers to Fun and Friendly Competition!</h3>
+                    <p>Catch all the highlights from KNUST's exciting WinE Games where sisterhood meets sportsmanship in
+                        the most incredible way.</p>
+
+               
+
+                    <p style="margin-top: 1rem; font-style: italic;">Celebrating teamwork, competition, and community
+                        spirit!</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4 class="highlight-title">What Makes WinE Games Special</h4>
+                    <ul class="content-list">
+                        <li><strong>Team Building:</strong> Strengthen bonds between members through collaborative
+                            sports activities</li>
+                        <li><strong>Healthy Competition:</strong> Foster a spirit of friendly rivalry that motivates
+                            personal growth</li>
+                        <li><strong>Stress Relief:</strong> Provide a fun outlet from academic pressures through
+                            engaging physical activities</li>
+                        <li><strong>Community Building:</strong> Create lasting friendships and memories beyond the
+                            classroom</li>
+                        <li><strong>Leadership Development:</strong> Opportunities to lead teams and organize sporting
+                            events</li>
+                        <li><strong>Inclusive Environment:</strong> Welcome participants of all skill levels and
+                            athletic abilities</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Kwame Nkrumah University of Science and Technology</p>
+                    <p>Kumasi, Ghana</p>
+                    <p>Email: wine@knust.edu.gh</p>
+                <div class="social-links">
+            <a href="https://www.tiktok.com/@wine_knust?_t=ZM-8yg85rKXNSA&_r=1"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://x.com/Knust_WinE"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/wine_knust_/?hl=en"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/wine-knust/about/?viewAsMember=true"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="events.html">Events</a></p>
+                    <p><a href="ohub.html">Opportunities</a></p>
+                    <p><a href="blogs.html">Blogs</a></p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Affiliations</h3>
+                    <p>Women in Engineering Ghana</p>
+                    <p>Ghana Institution of Engineers (GhIE)</p>
+                    <p>Ghana Engineering Students Association (GESA)</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Women in Engineering (WinE) KNUST. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+const mobileToggle = document.getElementById('mobile-toggle');
+const navMenu = document.getElementById('nav-menu');
+const closeMenu = document.getElementById('close-menu');
+
+mobileToggle.addEventListener('click', function () {
+    navMenu.classList.add('active');
+    closeMenu.style.display = 'flex';
+});
+
+closeMenu.addEventListener('click', function () {
+    navMenu.classList.remove('active');
+    closeMenu.style.display = 'none';
+});
+
+// Close nav when clicking a link
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        closeMenu.style.display = 'none';
+    });
+});
+        // Header scroll effect
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            header.classList.toggle('scrolled', window.scrollY > 100);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+
+                    // Close mobile menu after clicking a link
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        overlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
+        });
+
+        // Fix for viewport units on mobile
+        function setVH() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+        setVH();
+        window.addEventListener('resize', setVH);
+        // ===== Aerobics Slider =====
+(function () {
+  const slider = document.getElementById('aero-slider');
+  if (!slider) return;
+
+  const track = slider.querySelector('.aero-track');
+  const slides = Array.from(slider.querySelectorAll('.aero-slide'));
+  const prevBtn = slider.querySelector('.aero-prev');
+  const nextBtn = slider.querySelector('.aero-next');
+  const dotsWrap = slider.querySelector('.aero-dots');
+
+  let index = 0;
+  let autoplayTimer = null;
+  const AUTOPLAY_MS = 3500;
+  const TRANSITION_MS = 500;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.role = 'tab';
+    b.setAttribute('aria-label', `Go to slide ${i + 1}`);
+    b.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(b);
+  });
+
+  function updateUI() {
+    // move track
+    track.style.transform = `translateX(${-index * 100}%)`;
+    // aria + dots
+    slides.forEach((s, i) => s.setAttribute('aria-hidden', i !== index));
+    dotsWrap.querySelectorAll('button').forEach((d, i) => {
+      d.setAttribute('aria-selected', i === index ? 'true' : 'false');
+    });
+    // disable arrows at ends if you want non-looping behaviour (we loop)
+  }
+
+  function goTo(i) {
+    index = (i + slides.length) % slides.length; // loop
+    updateUI();
+    restartAutoplay();
+  }
+
+  function next() { goTo(index + 1); }
+  function prev() { goTo(index - 1); }
+
+  // Autoplay
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(next, AUTOPLAY_MS);
+  }
+  function stopAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    autoplayTimer = null;
+  }
+  function restartAutoplay() {
+    if (autoplayTimer) {
+      stopAutoplay();
+      startAutoplay();
+    }
+  }
+
+  // Buttons
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+
+  // Pause on hover / focus
+  slider.addEventListener('mouseenter', stopAutoplay);
+  slider.addEventListener('mouseleave', startAutoplay);
+  slider.addEventListener('focusin', stopAutoplay);
+  slider.addEventListener('focusout', startAutoplay);
+
+  // Swipe support
+  let startX = 0, deltaX = 0, locked = false;
+  const threshold = 40;
+
+  function onStart(e) {
+    locked = true;
+    startX = (e.touches ? e.touches[0].clientX : e.clientX);
+    deltaX = 0;
+    track.style.transition = 'none';
+  }
+  function onMove(e) {
+    if (!locked) return;
+    const x = (e.touches ? e.touches[0].clientX : e.clientX);
+    deltaX = x - startX;
+    track.style.transform = `translateX(calc(${-index * 100}% + ${deltaX}px))`;
+  }
+  function onEnd() {
+    if (!locked) return;
+    locked = false;
+    track.style.transition = `transform ${TRANSITION_MS}ms cubic-bezier(.2,.7,.2,1)`;
+    if (Math.abs(deltaX) > threshold) {
+      deltaX < 0 ? next() : prev();
+    } else {
+      updateUI();
+    }
+  }
+
+  slider.addEventListener('mousedown', onStart);
+  slider.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onEnd);
+  slider.addEventListener('touchstart', onStart, { passive: true });
+  slider.addEventListener('touchmove', onMove, { passive: true });
+  slider.addEventListener('touchend', onEnd);
+
+  // Keyboard (left/right)
+  slider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  // Init
+  updateUI();
+  startAutoplay();
+})();
+
+    </script>
+</body>
+
+</html>
